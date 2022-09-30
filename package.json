@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start-client": "vite",
-    "start": "vite --port $PORT",
+    "start": "vite --host --port $PORT",
     "build": "vite build",
     "preview": "vite preview"
   },
