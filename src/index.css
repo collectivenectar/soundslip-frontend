@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
+/* layout */
+:root {
+  --primary: #1aac83;
+  --error: #e7195a;
+}
+body {
+  background: #f1f1f1;
+  margin: 0;
+  font-family: "Poppins";
+}
+header {
+  background: #fff;
+}
+header .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header a {
+  color: #333;
+  text-decoration: none;
+}
+.navbar > nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.navbar > nav > a{
+  margin-left: 20px;
+  padding-top: 15px;
+}
+.navbar > nav > ul{
+  display: flex;
+  flex-direction: row;
+  list-style-type:none;
+}
+nav > ul > li{
+  margin-right: 30px;
+}
+.pages{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.library{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.searchbar-container{
+  width: 30%;
+  height: 90vh;
+}
+.slip-cell-container{
+  width: 70%;
+}
+.download{
+  border-radius: 15px;
+  padding: 10px;
+  margin-right: 2em;
+  margin-top: 38%;
+}
+.all-user-soundslips{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 90vh;
+  overflow: scroll;
+}
+.all-user-soundslips > section{
+  width: 40vw;
+}
+.public-soundslips{
+  width: 100%;
+}
+.private-soundslips{
+  width: 100%;
+}
+.slip-cell-container > .soundslip-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  line-height: 0.8em;
+}
+.pub-results{
+  width: 70%;
+}
+.soundslip-container:hover{
+  background-color: lightblue;
+}
+.soundslip-container > i{
+  font-size: 4em;
+  margin: auto;
+}
+.soundslip-container > section.slip-panel > div + div{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.slip-panel{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+.edit-container{
+}
+.edit-form{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+}
+.edit-form > *{
+  width: 70%;
+}
+.soundslip-container > section.slip-panel > div + div > button{
+  height: 30%;
+}
+.soundslip-container > section.slip-panel > div + div > button:hover{
+  background-color: green;
+}
+.soundslip-belongs{
+  font-size: 1em;
+  color: blue;
+}
+.soundslip-title{
+  font-size: 1.2em;
+}
+.soundslip-desc{
+  font-size: 0.8em;
+}
+.soundslip-date{
+  font-size: 0.8em;
+}
+.upload-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.create-new{
+  display: flex;
+  flex-direction: column;
+}
+.audio-player{
+  border: solid red 1px;
+  width: 10px;
+}

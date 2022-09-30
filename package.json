@@ -1,0 +1,28 @@
+{
+  "proxy": "https://soundslip-server.herokuapp.com/",
+  "name": "soundslip",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start-client": "vite",
+    "start": "vite --port $PORT",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@clerk/clerk-react": "^4.0.5",
+    "axios": "^0.27.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-query": "^4.0.0",
+    "react-router-dom": "^6.3.0",
+    "react-spinners": "^0.13.4"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.0",
+    "vite": "^3.0.0"
+  }
+}
