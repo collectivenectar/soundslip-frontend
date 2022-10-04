@@ -116,24 +116,27 @@ function App() {
     }, [location, locationRef.current, playerRef.current])
 
   return (
-      <ClerkProvider
-        frontendApi={frontendApi}
-        navigate={(to) => navigate(to)}
-      >
-          <div className="App">
-              <Navbar/>
-              <div className="pages">
-                  <Routes>
-                      <Route path="/library" element={< Library />}>
-                      </Route>
-                      <Route path="/" element={< Profile />}>
-                      </Route>
-                      <Route path="/upload" element={<Upload />}>
-                      </Route>
-                  </Routes>
-              </div>
+    <ClerkProvider
+    frontendApi={frontendApi}
+    navigate={(to) => navigate(to)}
+  >
+      <div className="App">
+        <AudioContext.Provider value={{currentSoundPlaying, setCurrentSoundPlaying, isPlaying, setIsPlaying, setUserId}}>
+          <Navbar />
+          < MainPlayer />
+          <div className="pages">
+            <Routes>
+                  <Route path="/library" element={< Library />}>
+                  </Route>
+                  <Route path="/" element={< Profile />}>
+                  </Route>
+                  <Route path="/upload" element={<Upload />}>
+                  </Route>
+              </Routes>
           </div>
-      </ClerkProvider>
+        </ AudioContext.Provider>
+      </div>
+  </ClerkProvider>
   )
 }
 
