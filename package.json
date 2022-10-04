@@ -6,9 +6,10 @@
   "type": "module",
   "scripts": {
     "start-client": "vite",
-    "start": "vite --host --port $PORT",
+    "start": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "heroku-push": "vite --host --port $PORT"
   },
   "dependencies": {
     "@clerk/clerk-react": "^4.0.5",
