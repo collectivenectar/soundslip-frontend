@@ -133,7 +133,7 @@ nav > ul > li:hover{
 }
 .soundslip-container{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: left;
   line-height: 0.8em;
 }
