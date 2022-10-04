@@ -10,10 +10,10 @@ const Searchbar = () => {
   return (
     <div className="searchbar-container">
       <section>
-      <form>
-         <label>Search</label>
+      <form className="search-form">
+        <label></label>
         <input className="search-input" type="text" value={query} onChange={(e) => updateQuery(e.target.value)}></input>
-        <button type="submit">Search</button>
+        <button className="search-button" type="submit">Search</button>
       </form>
       </section>
     </div>
@@ -21,3 +21,4 @@ const Searchbar = () => {
 }
 
 export default Searchbar
+
