@@ -56,7 +56,7 @@ const UserResults = ({soundslip}) => {
       })
   }
   return (
-    <div className="soundslip-container">
+    <div className="soundslip-container-user">
       <section className="slip-panel">
       <div className="player-section">
         < Player 
