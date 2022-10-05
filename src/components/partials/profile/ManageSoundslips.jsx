@@ -4,7 +4,7 @@ import UserResults from './UserResults'
 import { isLoaded, isSignedIn, useUser } from '@clerk/clerk-react'
 
 import axios from 'axios'
-const baseUrl = "https://soundslip-server.herokuapp.com"
+const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL
 
 export const EditContext = createContext(null)
 
@@ -30,13 +30,14 @@ const ManageSoundslips = () => {
       .then(function(response) {
         setSoundslips(oldSlips => response.data)
         setupEdit(response.data)
-        
+        console.log(response.data)
         let allSlipsState = {}
         for(let slip = 0; slip < response.data.length; slip++){
           allSlipsState[response.data[slip]._id] = false
         }
         setSoundPlaying(oldValue => allSlipsState)
       })
+      .catch(err => console.log(err))
   }, [formSubmit])
 
   return (

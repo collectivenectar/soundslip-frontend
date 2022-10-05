@@ -2,7 +2,7 @@ import React, { useContext, useRef } from 'react'
 import Player from '../../partials/library/Player'
 import { EditContext } from '../../pages/Library'
 
-const baseUrl = "https://soundslip-server.herokuapp.com/soundslips/"
+const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
 
 // NOTES:
 
@@ -29,6 +29,7 @@ const Results = ({soundslip}) => {
     axios.get(baseUrl + userId + "/" + soundslipId, {params})
       .then(response => {
         console.log(response.data)
+        // response.blob()?
         // download.current.href = url;
         // download.current.setAttribute(
         //   'download',

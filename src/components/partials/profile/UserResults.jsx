@@ -4,8 +4,7 @@ import Edit from './Edit'
 import Player from '../../Player'
 
 import axios from 'axios'
-const baseUrl = "https://soundslip-server.herokuapp.com"
-const deleteUrl = "https://soundslip-server.herokuapp.com/soundslips/"
+const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
 
 const UserResults = ({soundslip}) => {
   const {isEditing, setIsEditing, setFormSubmit, userId} = useContext(EditContext)
@@ -27,7 +26,7 @@ const UserResults = ({soundslip}) => {
     }
   }
   function deleteSoundslip(){
-    axios.delete(baseUrl + `/soundslips/${soundslip._id}`, {})
+    axios.delete(baseUrl + `${soundslip._id}`, {})
       .then(response => {
         if(response.statusText === "OK"){
           setFormSubmit(submitted => submitted + 1)
@@ -47,7 +46,7 @@ const UserResults = ({soundslip}) => {
         'Content-Type': 'audio/mpeg'
       },
     }
-    axios.get(deleteUrl + userId + "/" + soundslipId, {params})
+    axios.get(baseUrl + userId + "/" + soundslipId, {params})
       .then(response => {
         console.log(response.data)
       })

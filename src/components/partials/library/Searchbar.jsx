@@ -1,19 +1,69 @@
-import {Link} from 'react-router-dom'
-import {useState} from 'react'
+import {Link} from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { EditContext } from '../../pages/Library';
+import axios from 'axios';
+
+const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips"
 
 const Searchbar = () => {
+  const { soundslips, setSoundslips, userId } = useContext(EditContext)
   const [query, setQuery] = useState("")
+  // querytype is for expanded search capabilities, choose search by 
+  // title, description, length, tag, username, MIME type?
+  const [queryType, setQueryType] = useState("Title")
+
   function updateQuery(value) {
     setQuery(newValue => value)
   }
-
+  function updateType(){
+    if(queryType === "Title"){
+      setQueryType(oldType => "Username")
+    }else{
+      setQueryType(oldType => "Title")
+    }
+  }
+  function requestSearch(){
+    if(query !== ""){
+      let queries = {
+        Username: "/user/",
+        Title: "/",
+        description: "/"
+      }
+      let params = {
+        queryType: queryType,
+        query: query,
+      }
+      if(queryType === "Username"){
+        if(query.includes(" ")){
+          console.log("Usernames do not have spaces")
+        }else{
+        axios.get(baseUrl + queries[queryType] + userId, params)
+          .then((response) => {
+            console.log(response)
+            setSoundslips(response.data)
+          })
+          .catch(err => console.log(err))
+        }
+      }else{
+        axios.get(baseUrl + queries[queryType], params)
+          .then((response) => {
+            console.log(response)
+            setSoundslips(response.data)
+          })
+          .catch(err => console.log(err))
+      }
+    }else{
+      console.log("please enter something to search for")
+    }
+  }
   return (
     <div className="searchbar-container">
       <section>
       <form className="search-form">
-        <label></label>
+        <label>Search By:</label>
+        <a onClick={updateType} >{queryType}</a>
         <input className="search-input" type="text" value={query} onChange={(e) => updateQuery(e.target.value)}></input>
-        <button className="search-button" type="submit">Search</button>
+        <button onClick={requestSearch} className="search-button" type="button">Search</button>
       </form>
       </section>
     </div>

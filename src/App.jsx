@@ -14,7 +14,7 @@ const frontendApi = import.meta.env.VITE_REACT_APP_CLERK_FRONTEND_API;
 
 export const AudioContext = createContext(null)
 
-const baseUrl = "https://soundslip-server.herokuapp.com/soundslips/"
+const baseUrl = "/soundslips/"
 
 function App() {
     const location = useLocation()

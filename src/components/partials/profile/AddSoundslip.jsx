@@ -2,7 +2,7 @@ import {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import axios from 'axios'
-const baseUrl = "https://soundslip-server.herokuapp.com"
+const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL
 
 import {isLoaded, isSignedIn, useUser} from '@clerk/clerk-react'
 
