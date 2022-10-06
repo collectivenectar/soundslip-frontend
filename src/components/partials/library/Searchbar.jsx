@@ -46,6 +46,7 @@ const Searchbar = () => {
           .catch(err => console.log(err))
         }
       }else{
+        // Goes to /soundslips/user/:userName
         axios.get(baseUrl + queries[queryType], params)
           .then((response) => {
             setSoundslips(response.data)

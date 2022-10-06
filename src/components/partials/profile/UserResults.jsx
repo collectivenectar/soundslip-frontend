@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef } from 'react'
 import { EditContext } from './ManageSoundslips'
 import Edit from './Edit'
 import Player from '../../Player'
@@ -7,6 +7,7 @@ import axios from 'axios'
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
 
 const UserResults = ({soundslip}) => {
+  const download = useRef(null)
   const {isEditing, setIsEditing, setFormSubmit, userId} = useContext(EditContext)
 
   function editSoundslip() {
@@ -40,15 +41,18 @@ const UserResults = ({soundslip}) => {
   }
   function downloadSound(){
     let soundslipId = soundslip._id
-    let params = {
-      id: userId,
+    let fullUrl = baseUrl + "download/" + soundslipId
+    axios({
+      method: 'get',
+      url: fullUrl,
+      data: {userId: userId},
       headers: {
-        'Content-Type': 'audio/mpeg'
-      },
-    }
-    axios.get(baseUrl + userId + "/" + soundslipId, {params})
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    })
       .then(response => {
-        console.log(response.data)
+        download.current.href = response.data
+        download.current.click()
       })
       .catch(err => {
         console.log(err)
@@ -66,6 +70,7 @@ const UserResults = ({soundslip}) => {
           <div className="soundslip-topline">
             <h2 className="soundslip-title">{soundslip && soundslip.title}</h2>
             <div className="soundslip-actions">
+            <a ref={download}></a>
             < a className="download" onClick={() => downloadSound()}><i className="fa-solid fa-floppy-disk"></i></a>
             < a className="soundslip-edit" onClick={editSoundslip}><i className="fa-solid fa-sliders"></i></a>
             < a className="soundslip-delete" onClick={deleteSoundslip}><i className="fa-solid fa-delete-left"></i></a>

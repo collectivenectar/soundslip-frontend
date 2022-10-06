@@ -1,41 +1,28 @@
 import React, { useContext, useRef } from 'react'
 import Player from '../../partials/library/Player'
 import { EditContext } from '../../pages/Library'
+import axios from 'axios'
 
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
-
-// NOTES:
-
-// Looks like I need to get access to the dom, and possible the window?
-// I need to trigger an actual download of the file to the 
-// client server/file storage as a blob? Then create a url
-// from the local blob. Then place it in the DOM using
-// React.createElement() or something and trigger
-// a click() event?
-
 
 const Results = ({soundslip}) => {
   const { userId } = useContext(EditContext)
   const download = useRef(null)
   
   function downloadSound() {
-    const soundslipId = soundslip._id
-    let params = {
-      id: userId,
+    let soundslipId = soundslip._id
+    let fullUrl = baseUrl + "download/" + soundslipId
+    axios({
+      method: 'get',
+      url: fullUrl,
+      data: {userId: userId},
       headers: {
-        'Content-Type': 'audio/mpeg'
-      },
-    }
-    axios.get(baseUrl + userId + "/" + soundslipId, {params})
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    })
       .then(response => {
-        console.log(response.data)
-        // response.blob()?
-        // download.current.href = url;
-        // download.current.setAttribute(
-        //   'download',
-        //   ``,
-        // );
-        // download.current.click();
+        download.current.href = response.data
+        download.current.click()
       })
       .catch(err => {
         console.log(err)
