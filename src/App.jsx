@@ -14,7 +14,7 @@ const frontendApi = import.meta.env.VITE_REACT_APP_CLERK_FRONTEND_API;
 
 export const AudioContext = createContext(null)
 
-const baseUrl = "/soundslips/"
+const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
 
 function App() {
     const location = useLocation()
