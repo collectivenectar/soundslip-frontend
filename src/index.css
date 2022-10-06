@@ -94,11 +94,16 @@ nav > ul > li:hover{
   border: none;
   border-radius: 5px;
   margin-top: 1rem;
+  padding-top: 0.8rem;
   width: 6rem;
   height: 2rem;
   color: #696C95;
   font-family: 'Questrial', sans-serif;
   font-size: 1.2rem;
+  text-align: center;
+}
+.search-button:active{
+  background-color: #6995C7;
 }
 .slip-cell-container{
   width: 70%;

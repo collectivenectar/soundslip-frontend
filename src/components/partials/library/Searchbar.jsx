@@ -30,8 +30,10 @@ const Searchbar = () => {
         description: "/"
       }
       let params = {
-        queryType: queryType,
-        query: query,
+        params: {
+          queryType: queryType,
+          query: query,
+        }
       }
       if(queryType === "Username"){
         if(query.includes(" ")){
@@ -39,7 +41,6 @@ const Searchbar = () => {
         }else{
         axios.get(baseUrl + queries[queryType] + userId, params)
           .then((response) => {
-            console.log(response)
             setSoundslips(response.data)
           })
           .catch(err => console.log(err))
@@ -47,7 +48,6 @@ const Searchbar = () => {
       }else{
         axios.get(baseUrl + queries[queryType], params)
           .then((response) => {
-            console.log(response)
             setSoundslips(response.data)
           })
           .catch(err => console.log(err))
@@ -63,7 +63,7 @@ const Searchbar = () => {
         <label>Search By:</label>
         <a onClick={updateType} >{queryType}</a>
         <input className="search-input" type="text" value={query} onChange={(e) => updateQuery(e.target.value)}></input>
-        <button onClick={requestSearch} className="search-button" type="button">Search</button>
+        <a onClick={() => requestSearch()} className="search-button">Search</a>
       </form>
       </section>
     </div>
