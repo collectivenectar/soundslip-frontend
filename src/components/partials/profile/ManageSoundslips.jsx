@@ -41,33 +41,32 @@ const ManageSoundslips = () => {
   }, [formSubmit])
 
   return (
-    <div>
     <div className="all-user-soundslips">
       <section className="public-soundslips">
-      <h2>Public Uploads</h2>
-      <EditContext.Provider value={{isEditing, setIsEditing, setFormSubmit, soundPlaying, setSoundPlaying, userId}}>
-      <div>{soundslips && soundslips.map(soundslip => {
-        if(soundslip.public){
-          return (
-            <UserResults
-            key={soundslip._id}
-            soundslip={soundslip}
-            />
-          )
-        }
-      })}
-        </div>
+        <h2>Public Uploads</h2>
+        <EditContext.Provider value={{isEditing, setIsEditing, setFormSubmit, soundPlaying, setSoundPlaying, userId}}>
+        <div className="user-slip-cell-cont" >{soundslips && soundslips.map(soundslip => {
+          if(soundslip.public){
+            return (
+              <UserResults
+                key={soundslip._id}
+                soundslip={soundslip}
+              />
+            )
+          }
+        })}
+          </div>
         </ EditContext.Provider>
       </section>
       <section className="private-soundslips">
         <h2>Private Uploads</h2>
         <EditContext.Provider value={{isEditing, setIsEditing, setFormSubmit, soundPlaying, setSoundPlaying, userId}}>
-        <div>{soundslips && soundslips.map(soundslip => {
+        <div className="user-slip-cell-cont">{soundslips && soundslips.map(soundslip => {
           if(!soundslip.public){
             return (
               <UserResults
-              key={soundslip._id}
-              soundslip={soundslip}
+                key={soundslip._id}
+                soundslip={soundslip}
               />
             )
           }
@@ -75,7 +74,6 @@ const ManageSoundslips = () => {
           </div>
           </ EditContext.Provider>
       </section>
-    </div>
     </div>
   )
 }

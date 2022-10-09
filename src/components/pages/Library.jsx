@@ -22,17 +22,13 @@ const Library = () => {
         setSoundslips(response.data)
       })
   }, [])
-  React.useEffect(() => {
-    console.log("soundslips are being set")
-  }, [soundslips])
   return (
     <div className="library">
       <SignedIn>
       <EditContext.Provider value={{soundslips, setSoundslips, userId}}>
         <Searchbar/>
-        <div className="slip-cell-container">
+        <div className="lib-slip-container">
           {soundslips && soundslips.map(soundslip => {
-            console.log("this is being rerendered")
             return (
               <Results key={soundslip._id} soundslip={soundslip}/>
             )

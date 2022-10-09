@@ -6,6 +6,8 @@ import axios from 'axios'
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
 
 const Results = ({soundslip}) => {
+  const parsedDate = ("created on " + soundslip.createdAt.split("T")[0] + " at " 
+    + soundslip.createdAt.split("T")[1].split(".")[0])
   const { userId } = useContext(EditContext)
   const download = useRef(null)
   
@@ -29,19 +31,21 @@ const Results = ({soundslip}) => {
       })
   }
   return (
-    <div className="soundslip-container">
-      < Player 
+    <div className="lib-slip-cell">
+      <div className="lib-slip-links-cont">
+        < Player 
             soundslip={soundslip}
           />
-      <div className="pub-results">
+        <a className="lib-download" onClick={() => downloadSound()}><i className="fa-solid fa-floppy-disk"></i></a>
+      </div>
+      <div className="lib-slip-cell-data">
         <div>
-          <h2 className="soundslip-belongs">uploaded by {soundslip && soundslip.userName}</h2>
-          <h2 className="soundslip-title">{soundslip && soundslip.title}</h2>
-          <h3 className="soundslip-desc">{soundslip && soundslip.body}</h3>
-          <h3 className="soundslip-date">{soundslip && soundslip.createdAt}</h3>
+          <h2 className="lib-slip-title">{soundslip && soundslip.title}</h2>
+          <h2 className="lib-slip-belongs">uploaded by {soundslip && soundslip.userName}</h2>
+          <h3 className="lib-slip-desc">{soundslip && soundslip.body}</h3>
+          <h3 className="lib-slip-date">{soundslip && parsedDate}</h3>
           <a ref={download}></a>
         </div>
-        <a className="download" onClick={() => downloadSound()}><i className="fa-solid fa-floppy-disk"></i></a>
       </div>
     </div>
   )

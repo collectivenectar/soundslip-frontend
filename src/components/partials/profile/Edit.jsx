@@ -32,10 +32,16 @@ const Edit = (props) => {
   return(
     <div className="edit-container">
       <form className="edit-form">
-        <label>Title<input type="text" name="title" value={editForm.title} onChange={handleChange} placeholder={editForm.title}></input></label>
-        <label>Description<input type="textarea" name="body" value={editForm.body} onChange={handleChange}></input></label>
-        <label>Private<input type="checkbox" name="public" checked={editForm.public} onChange={handleChange}></input></label>
-        <input type="submit" onClick={e => handleSubmit(e)} value="save changes"></input>
+        <label>Title
+          <input type="text" name="title" value={editForm.title} onChange={handleChange} placeholder={editForm.title}></input>
+        </label>
+        <label>Description
+          <textarea type="textarea" name="body" value={editForm.body} onChange={handleChange}></textarea>
+          </label>
+        <label>Public
+          <input className="edit-public" type="checkbox" name="public" checked={editForm.public} onChange={handleChange}></input>
+          </label>
+        <input className="edit-submit" type="submit" onClick={e => handleSubmit(e)} value="save changes"></input>
       </form>
     </div>
   )

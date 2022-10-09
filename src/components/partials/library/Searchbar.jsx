@@ -62,7 +62,7 @@ const Searchbar = () => {
       <section>
       <form className="search-form">
         <label>Search By:</label>
-        <a onClick={updateType} >{queryType}</a>
+        <a className="search-type" onClick={updateType} >{queryType}</a>
         <input className="search-input" type="text" value={query} onChange={(e) => updateQuery(e.target.value)}></input>
         <a onClick={() => requestSearch()} className="search-button">Search</a>
       </form>

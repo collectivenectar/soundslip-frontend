@@ -7,6 +7,16 @@ import axios from 'axios'
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
 
 const UserResults = ({soundslip}) => {
+  const parsedTitle = (soundslip.title.slice(0, soundslip.title.length >= 35
+        ? 35
+        : soundslip.title.length) 
+      + 
+      (soundslip.title.length > 35
+        ? "..."
+        : "")
+    )
+  const parsedDate = ("created on " + soundslip.createdAt.split("T")[0] + " at " 
+    + soundslip.createdAt.split("T")[1].split(".")[0])
   const download = useRef(null)
   const {isEditing, setIsEditing, setFormSubmit, userId} = useContext(EditContext)
 
@@ -61,24 +71,27 @@ const UserResults = ({soundslip}) => {
   return (
     <div className="soundslip-container-user">
       <section className="slip-panel">
-      <div className="player-section">
-        < Player 
-          soundslip={soundslip}
-        />
+        <div className="user-player-section">
+          < Player 
+            soundslip={soundslip}
+          />
+          <a ref={download}></a>
+          <a className="user-download" onClick={() => downloadSound()}>
+            <i className="fa-solid fa-floppy-disk"></i>
+          </a>
         </div>
-        <div>
-          <div className="soundslip-topline">
-            <h2 className="soundslip-title">{soundslip && soundslip.title}</h2>
+        <div className="user-slip-details">
+          <div className="soundslip-topline" onClick={editSoundslip}>
+            <h2 className="soundslip-title" >{soundslip && parsedTitle}</h2>
             <div className="soundslip-actions">
-            <a ref={download}></a>
-            < a className="download" onClick={() => downloadSound()}><i className="fa-solid fa-floppy-disk"></i></a>
-            < a className="soundslip-edit" onClick={editSoundslip}><i className="fa-solid fa-sliders"></i></a>
-            < a className="soundslip-delete" onClick={deleteSoundslip}><i className="fa-solid fa-delete-left"></i></a>
+              <a className="soundslip-delete" onClick={deleteSoundslip}>
+                <i className="fa-solid fa-delete-left"></i>
+              </a>
             </div>
           </div>
-          <h3 className="soundslip-desc">{soundslip && soundslip.body}</h3>
-          <h3 className="soundslip-date">{soundslip && soundslip.createdAt}</h3>
-          </div>
+          <h3 className="soundslip-desc" onClick={editSoundslip}>{soundslip && soundslip.body}</h3>
+          <h3 className="soundslip-date" onClick={editSoundslip}>{soundslip && parsedDate}</h3>
+        </div>
       </section>
       <section>
       {isEditing[soundslip._id] &&
