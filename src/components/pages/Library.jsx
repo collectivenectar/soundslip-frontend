@@ -27,6 +27,7 @@ const Library = () => {
       <SignedIn>
       <EditContext.Provider value={{soundslips, setSoundslips, userId}}>
         <Searchbar/>
+        {!soundslips.length && (<a className="bad-search-response" >No results for that search</a>)}
         <div className="lib-slip-container">
           {soundslips && soundslips.map(soundslip => {
             return (

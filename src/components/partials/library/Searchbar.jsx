@@ -23,49 +23,59 @@ const Searchbar = () => {
     }
   }
   function requestSearch(){
-    if(query !== ""){
-      let queries = {
-        Username: "/user/",
-        Title: "/",
-        description: "/"
+    let queries = {
+      Username: "/user/",
+      Title: "/",
+      description: "/"
+    }
+    let params = {
+      params: {
+        queryType: queryType,
+        query: query,
       }
-      let params = {
-        params: {
-          queryType: queryType,
-          query: query,
-        }
-      }
-      if(queryType === "Username"){
-        if(query.includes(" ")){
-          console.log("Usernames do not have spaces")
-        }else{
+    }
+    if(queryType === "Username"){
+      if(query.includes(" ")){
+        console.log("Usernames do not have spaces")
+      }else{
         axios.get(baseUrl + queries[queryType] + userId, params)
           .then((response) => {
             setSoundslips(response.data)
-          })
-          .catch(err => console.log(err))
-        }
-      }else{
-        // Goes to /soundslips/user/:userName
-        axios.get(baseUrl + queries[queryType], params)
-          .then((response) => {
-            setSoundslips(response.data)
+            console.log(response.data)
           })
           .catch(err => console.log(err))
       }
     }else{
-      console.log("please enter something to search for")
+      // Goes to /soundslips/
+      if(query === ""){
+        params.queryType = false
+      }
+      axios.get(baseUrl + queries[queryType], params)
+        .then((response) => {
+          setSoundslips(response.data)
+          console.log(response.data)
+        })
+        .catch(err => console.log(err))
     }
   }
   return (
     <div className="searchbar-container">
-      <section>
+      <section >
       <form className="search-form">
         <label>Search By:</label>
         <a className="search-type" onClick={updateType} >{queryType}</a>
         <input className="search-input" type="text" value={query} onChange={(e) => updateQuery(e.target.value)}></input>
         <a onClick={() => requestSearch()} className="search-button">Search</a>
       </form>
+      </section>
+      <section>
+        <h2 href="">Filters:</h2>
+        <div>
+          <a className="filter-results"><i></i></a>
+          <a className="filter-results"><i></i></a>
+          <a className="filter-results"><i></i></a>
+          <a className="filter-results"><i></i></a>
+        </div>
       </section>
     </div>
   )

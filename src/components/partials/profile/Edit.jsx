@@ -10,6 +10,8 @@ const Edit = (props) => {
 
   function handleSubmit(e){
     e.preventDefault()
+    // could add logic here to prevent unnecessary crud operations if editForm is unchanged 
+    // compared to different soundslip.properties. If same, do nothing, if changed, axios.put()
     axios.put(baseUrl + `/soundslips/${editForm._id}`, {...editForm})
       .then(response => {
         if(response.statusText === "OK"){

@@ -101,7 +101,7 @@ nav > ul > li > a:hover{
 
 /* LIB - SEARCH PANEL */
 .searchbar-container{
-  width: 30vw;
+  min-width: 25%;
   padding: 1.5em;
   background-color: #22252d;
 }
@@ -119,13 +119,14 @@ nav > ul > li > a:hover{
 }
 .search-input{
   width: 80%;
-  background-color: #30343F;
+  background-color: #18191a;
   border: solid #30343F 2px;
   height: 2em;
   border-radius: 5px;
   display: block;
   color:#c6c5b6;
   font-family: 'Silkscreen', sans-serif;
+  font-size: 1.2em;
 }
 .search-input:hover{
   border: solid #c6c5b6 2px;
@@ -151,13 +152,21 @@ nav > ul > li > a:hover{
 }
 .search-type{
   color: #c6c5b6;
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+.bad-search-response{
+  width: 100%;
+  margin: auto;
+  text-align: center;
   font-size: 1.5em;
+  color: white;
 }
 
 /* LIB - SEARCH RESULTS CONTAINER */
 .lib-slip-container{
-  width: 100%;
-  height: 100%;
+  overflow-y:scroll;
+  overflow-x:hidden;
 }
 .lib-slip-cell{
   display: flex;
@@ -165,7 +174,7 @@ nav > ul > li > a:hover{
   justify-content: left;
   align-items: center;
   width: 98.5%;
-  height: 20vh;
+  height: 20%;
   line-height: 1em;
   padding-left: 1em;
   color:#c6c5b6;
@@ -178,7 +187,7 @@ nav > ul > li > a:hover{
 .lib-slip-cell-data{
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 90%;
   height: 100%;
   padding-left: 2%;
 }
@@ -188,10 +197,12 @@ nav > ul > li > a:hover{
 }
 .lib-slip-belongs{
   font-size: 0.8em;
+  width: 100%;
   margin: -1em 0 0 0.4em;
   color:#c6c5b6;
 }
 .lib-slip-title{
+  width: 100%;
   font-size: 1.4em;
   font-family: 'Silkscreen', cursive;
 }
@@ -200,8 +211,7 @@ nav > ul > li > a:hover{
   color: #9f9e92;
   font-size: 1.2em;
   margin: 0.4em 0 0 1em;
-  width: 100%;
-  min-height: 40%;
+  width: 90%;
   line-height: 1.2em;
 }
 .lib-slip-date{
@@ -214,7 +224,7 @@ nav > ul > li > a:hover{
   padding: 1em;
 }
 .lib-player-container i{
-  font-size: 2.5rem;
+  font-size: 2.5em;
 }
 .lib-download{
   display: block;
@@ -223,7 +233,7 @@ nav > ul > li > a:hover{
 }
 .lib-download i{
   color: #37436e;
-  font-size: 2rem;
+  font-size: 2em;
 }
 .lib-download i:hover{
   color: #c6c5b6; 
@@ -294,7 +304,7 @@ nav > ul > li > a:hover{
   font-size: 0.8em;
 }
 .soundslip-topline i{
-  font-size: 1.3rem;
+  font-size: 1.6rem;
 }
 .soundslip-actions{
   display: flex;
@@ -333,42 +343,50 @@ nav > ul > li > a:hover{
   color: #cbbfae;
 }
 .edit-container{
-  background-color: #2c2e37;
+  background-color: #383c4d;
+  border: solid 2px #a6957e;
+  border-radius: 5px;
 }
 .edit-form{
   display: flex;
   flex-direction: column;
-  padding: 20px;
   align-items: center;
+  padding-top: 0.6em;
 }
 .edit-form > *{
+  padding: 0.5em 0;
   width: 90%;
 }
 .edit-form > label > input, textarea{
   display: block;
-  margin: 0.5em;
-  width: 100%;
+  margin: 0.6em 0;
+  width: 97%;
   height: 5vh;
   padding: 0.2em 0.5em;
   border-radius: 4px;
-  border: none;
-  background-color: #cbbfae;
-  color: #5b5a4f;
+  border: solid #cbbfae 2px;
+  background-color: #191a1f;
+  color: #cbbfae;
   font-family: 'Silkscreen', cursive;
 }
 .edit-form > label > textarea{
   height: 5em;
+  font-size: 1.1em;
+}
+.edit-form > label > input:not(.edit-public){
+  font-size: 1.1em;
 }
 .edit-submit{
-  color: #cbbfae;
-  background-color: #5b5a4f;
+  color: #5b5a4f;
+  background-color: #cbbfae;
   height: 5vh;
   width: 30%;
   border-radius: 5px;
-  margin-top: 4em;
+  margin: 3em 0;
   font-family: 'Silkscreen', cursive;
 }
-.edit-public{
+.is-editing{
+  background-color: #cbbfae
 }
 /* LIB PLAYER */
 .fa-pause{
@@ -377,7 +395,27 @@ nav > ul > li > a:hover{
 .fa-play{
   font-size: 2rem;
 }
-
+.delete-dialog-cont{
+  background-color: #5b5a4f;
+  line-height: 1em;
+  font-size: 0.7em;
+  color: white;
+  text-align: center;
+  padding: 0.8em 0;
+}
+.delete-dialog-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.delete-dialog-button{
+  border: none;
+  font-family: 'Silkscreen', cursive;
+  color: white;
+  padding: 0.5em 2em;
+  border-radius: 5px;
+  background-color: #cbbfae;
+}
 
 
 /* UPLOAD PAGE */
@@ -414,7 +452,7 @@ nav > ul > li > a:hover{
 }
 .upload-text{
   background-color:#c6c5b6;
-  border: none;
+  border: solid #c6c5b6 3px;
   border-radius: 5px;
   margin: 0 auto;
   width: 75%;
@@ -422,6 +460,10 @@ nav > ul > li > a:hover{
   font-family: 'Silkscreen', sans-serif;
   font-size: 1.2em;
   padding-left: 1em;
+  color: #5b5a4f;
+}
+.upload-text:hover{
+  border: solid white 3px;
 }
 .upload-text:only-of-type{
   height: 11vh;
