@@ -155,18 +155,57 @@ nav > ul > li > a:hover{
   font-size: 2em;
   margin-bottom: 1em;
 }
+.toggled-off{
+  color:#555862;
+}
 .bad-search-response{
   width: 100%;
-  margin: auto;
+  margin: 3em auto;
   text-align: center;
   font-size: 1.5em;
   color: white;
+}
+.filters-title{
+  margin-top: 3em;
+  color: #c6c5b6;
+  text-align: center;
+}
+.filters-grid{
+  display: flex;
+  flex-direction: row;
+  width: 99%;
+  height: 15em;
+  flex-wrap:wrap;
+  justify-content: space-evenly;
+}
+.filter-results{
+  width: 5em;
+  height: 6em;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: #969478;
+}
+.filter-results > *{
+  height: 100%;
+  width: 100%;
+}
+.filter-icons > i{
+  font-size: 2.6em;
+  padding: .32em;
+  color: #686544;
+  border: solid #918f78 2px;
+  border-radius: 5px;
+}
+.filter-icons > i:hover{
+  border: solid #c6c5b6 2px;
 }
 
 /* LIB - SEARCH RESULTS CONTAINER */
 .lib-slip-container{
   overflow-y:scroll;
   overflow-x:hidden;
+  width: 100%;
 }
 .lib-slip-cell{
   display: flex;
@@ -181,8 +220,8 @@ nav > ul > li > a:hover{
   border-bottom: solid #c6c5b6 1px;
 }
 .lib-slip-cell:hover{
-  background-color:#555862;
-  border-bottom: solid white 1px;
+  background-color:#3d3f48;
+  border-bottom: solid rgb(158, 146, 146) 1px;
 }
 .lib-slip-cell-data{
   display: flex;
@@ -190,6 +229,9 @@ nav > ul > li > a:hover{
   width: 90%;
   height: 100%;
   padding-left: 2%;
+}
+.lib-slip-group{
+  width: 100%;
 }
 .lib-slip-links-cont{
   width: 8%;
@@ -200,6 +242,9 @@ nav > ul > li > a:hover{
   width: 100%;
   margin: -1em 0 0 0.4em;
   color:#c6c5b6;
+}
+.username-link{
+  color: #e6e2a6;
 }
 .lib-slip-title{
   width: 100%;
@@ -238,6 +283,29 @@ nav > ul > li > a:hover{
 .lib-download i:hover{
   color: #c6c5b6; 
 }
+.lib-slip-last-line{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 30%;
+}
+.lib-slip-last-line > i{
+  padding: 1.4%;
+}
+.lib-slip-last-line > div{
+  display: flex;
+  flex-direction: row;
+  height: 1.2em;
+  margin: 0.3em 0.5em;
+  border: solid #c6c5b6 2px;
+  border-radius: 5px;
+  padding: 0.2em;
+}
+.lib-slip-last-line > div > * {
+  height: 100%;
+  margin: 0.1em 0.5em;
+}
+
 
 /* USER PROFILE */
 
@@ -299,6 +367,28 @@ nav > ul > li > a:hover{
   font-size: 1em;
   line-height: 1em;
   color:#7b7966
+}
+.user-slip-last-line{
+  display: flex;
+  flex-direction: row;
+  height: 2.5em;
+  width: 100%;
+  justify-content: space-between;
+}
+.user-slip-tag-group{
+  display: flex;
+  flex-direction: row;
+  margin: 0 0.5em;
+}
+.user-slip-tag-group > i{
+  font-size: 2em;
+  height: 1em;
+  margin: 0.3em;
+}
+.user-slip-tag-group > h4{
+  font-size: 0.9em;
+  height: 1em;
+  width: 100%;
 }
 .user-slip-details > .soundslip-date{
   font-size: 0.8em;
@@ -430,6 +520,8 @@ nav > ul > li > a:hover{
   width: 100%;
   font-family: 'Silkscreen', cursive;
   color:#c6c5b6;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .create-new{
   display: flex;
@@ -482,9 +574,33 @@ nav > ul > li > a:hover{
   margin: auto;
   height: 6vh;
   width: 30%;
-  background-color: #c6c5b6;
+  background-color: #9d9b86;
   border-radius: 5px;
-  font-family: 'Silkscreen', sans-serif
+  margin-bottom: 5em;
+  font-family: 'Silkscreen', sans-serif;
+  font-size: 1.5em;
+  color: #c6c5b6;
+}
+.public-label{
+  margin-top: 2em;
+  text-align: center;
+}
+.public-label input {
+  display: block;
+  margin: 1em auto;
+  -ms-transform: scale(2);
+  -moz-transform: scale(2); 
+  -webkit-transform: scale(2); 
+  -o-transform: scale(2); 
+  transform: scale(2);
+}
+.upload-tags-grid{
+  display: flex;
+  flex-direction: row;
+  width: 99%;
+  height: 8em;
+  flex-wrap:wrap;
+  justify-content: space-evenly;
 }
 
 /* CLERK STUFF */

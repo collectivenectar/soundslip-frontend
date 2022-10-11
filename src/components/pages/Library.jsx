@@ -28,13 +28,14 @@ const Library = () => {
       <EditContext.Provider value={{soundslips, setSoundslips, userId}}>
         <Searchbar/>
         {!soundslips.length && (<a className="bad-search-response" >No results for that search</a>)}
-        <div className="lib-slip-container">
-          {soundslips && soundslips.map(soundslip => {
+        {soundslips.length && <div className="lib-slip-container">
+          {soundslips.map(soundslip => {
             return (
-              <Results key={soundslip._id} soundslip={soundslip}/>
+                <Results key={soundslip._id} soundslip={soundslip}/>
             )
-          })}
-        </div>
+            })}
+          </div>
+          }
         </EditContext.Provider>
       </SignedIn>
       <SignedOut>

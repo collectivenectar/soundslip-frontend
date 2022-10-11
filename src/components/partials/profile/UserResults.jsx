@@ -20,6 +20,15 @@ const UserResults = ({soundslip}) => {
   const download = useRef(null)
   const {isEditing, setIsEditing, setFormSubmit, userId} = useContext(EditContext)
   const [isDeleting, setIsDeleting] = useState(false)
+  const tagIcons = {
+    "drums": "fa-solid fa-drum",
+    "synth": "fa-solid fa-wave-square",
+    "bass": "fa-solid fa-house-crack",
+    "lead": "fa-solid fa-music",
+    "voice": "fa-solid fa-microphone-lines",
+    "loop": "fa-solid fa-record-vinyl",
+    "other": "fa-solid fa-blender"
+  }
 
   function editSoundslip() {
     for(let each = 0; each < Object.keys(isEditing).length; each++){
@@ -41,7 +50,7 @@ const UserResults = ({soundslip}) => {
     setIsDeleting(oldState => !oldState)
   }
   function deleteSoundslip(){
-    axios.delete(baseUrl + `${soundslip._id}`, {})
+    axios.delete(baseUrl + `${soundslip._id}`, {userId: userId})
       .then(response => {
         if(response.statusText === "OK"){
           setFormSubmit(submitted => submitted + 1)
@@ -108,7 +117,13 @@ const UserResults = ({soundslip}) => {
             </div>
           </div>
           <h3 className="soundslip-desc" onClick={editSoundslip}>{soundslip && soundslip.body}</h3>
-          <h3 className="soundslip-date" onClick={editSoundslip}>{soundslip && parsedDate}</h3>
+          <div className="user-slip-last-line">
+            <h3 className="soundslip-date" onClick={editSoundslip}>{soundslip && parsedDate}</h3>
+            <div className="user-slip-tag-group">
+              <i className={tagIcons[soundslip.tag]}></i>
+              <h4>{soundslip.tag}</h4>
+            </div>
+          </div>
         </div>
       </section>
       <section>

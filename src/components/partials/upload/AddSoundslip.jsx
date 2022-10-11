@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useRef} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import axios from 'axios'
@@ -9,6 +9,9 @@ import {isLoaded, isSignedIn, useUser} from '@clerk/clerk-react'
 const AddSoundslip = () => {
   const navigate = useNavigate()
 
+  const tagsGrid = useRef(null)
+  const [tag, setTag] = useState("")
+
   const { isLoaded, isSignedIn, user } = useUser()
   const userInfo = !isLoaded || !isSignedIn ? null : {userId: user.id, userName: user.username}
 
@@ -16,10 +19,21 @@ const AddSoundslip = () => {
     file: "",
     title: "",
     body: "",
+    tag: tag,
     public: false,
     userId: userInfo.userId,
     userName: userInfo.userName,
   })
+
+  function toggleTag(e){
+    setTag(oldState => e.target.parentElement.name)
+    setSoundslipForm(oldForm => {
+      return {
+        ...oldForm,
+        tag: e.target.parentElement.name
+      }
+    })
+  }
 
   function updateForm(e){
     if(e.target.name === "public"){
@@ -64,6 +78,16 @@ const AddSoundslip = () => {
     }
   }
 
+  function inputCheck(){
+    let keys = Object.keys(soundslipForm)
+    for(let key = 0; key < keys.length - 2; key++){
+      if(soundslipForm[keys[key]] === ""){
+        return false
+      }
+    }
+    return true
+  }
+
   function handleSubmit(e){
     const config = {
       headers: {
@@ -71,7 +95,8 @@ const AddSoundslip = () => {
       }
     }
     e.preventDefault()
-    axios.post(baseUrl + '/soundslips/', soundslipForm, config)
+    if(inputCheck()){
+      axios.post(baseUrl + '/soundslips/', soundslipForm, config)
       .then(function(response) {
         if(response.status === 200){
           navigate('/')
@@ -79,6 +104,9 @@ const AddSoundslip = () => {
           console.log("upload failed")
         }
       })
+    }else{
+      console.log("form incomplete, please finish filling it out")
+    }
   }
 
   return (
@@ -89,10 +117,59 @@ const AddSoundslip = () => {
       <input className="upload-text" type="text" name="title" value={soundslipForm.title} onChange={(e) => updateForm(e)}></input>
       <label className="body-label" htmlFor="textarea">description</label>
       <textarea className="upload-text" type="textarea" name="body" value={soundslipForm.body} onChange={(e) => updateForm(e)}></textarea>
-      <label className="public-label" htmlFor="public">public</label>
-      <input className="upload-checkbox" type="checkbox" name="public" value={soundslipForm.public} onChange={(e) => updateForm(e)}></input>
+      <div className="public-label">
+        <label>public
+          <input type="checkbox" name="public" value={soundslipForm.public} onChange={(e) => updateForm(e)}></input>
+        </label>
+        <section>
+        <h2 href="" className="filters-title">Select your sample type:</h2>
+        <div className="upload-tags-grid" ref={tagsGrid}>
+          <label className="filter-results">drums
+            <a className="filter-icons" name="drums">
+              <i className="fa-solid fa-drum" onClick={toggleTag} style={{backgroundColor: 
+                `${tag === "drums"? "#918f78": "#22252d"}`}}></i>
+            </a>
+          </label>
+          <label className="filter-results">synth
+            <a className="filter-icons" name="synth">
+              <i className="fa-solid fa-wave-square" onClick={toggleTag} style={{backgroundColor: 
+                `${tag === "synth"? "#918f78": "#22252d"}`}}></i>
+            </a>
+          </label>
+          <label className="filter-results">bass
+          <a className="filter-icons" name="bass">
+            <i className="fa-solid fa-house-crack" onClick={toggleTag}style={{backgroundColor: 
+              `${tag === "bass"? "#918f78": "#22252d"}`}}></i>
+            </a>
+            </label>
+          <label className="filter-results">lead
+          <a className="filter-icons" name="lead">
+            <i className="fa-solid fa-music" onClick={toggleTag} style={{backgroundColor: 
+              `${tag === "lead"? "#918f78": "#22252d"}`}}></i>
+            </a>
+            </label>
+          <label className="filter-results">voice
+          <a className="filter-icons" name="voice">
+            <i className="fa-solid fa-microphone-lines" onClick={toggleTag} style={{backgroundColor: 
+              `${tag === "voice"? "#918f78": "#22252d"}`}}></i>
+            </a>
+            </label>
+          <label className="filter-results">loop
+          <a className="filter-icons" name="loop">
+            <i className="fa-solid fa-record-vinyl" onClick={toggleTag} style={{backgroundColor: 
+              `${tag === "loop"? "#918f78": "#22252d"}`}}></i>
+            </a>
+            </label>
+          <label className="filter-results">other
+          <a className="filter-icons" name="other">
+            <i className="fa-solid fa-blender" onClick={toggleTag} style={{backgroundColor: 
+              `${tag === "other"? "#918f78": "#22252d"}`}}></i>
+            </a>
+            </label>
+        </div>
+      </section>
+      </div>
       <button className="upload-button" onClick={handleSubmit}>upload</button>
-      <div>{}</div>
     </form>
   )
 }

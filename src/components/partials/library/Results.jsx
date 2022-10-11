@@ -10,7 +10,18 @@ const Results = ({soundslip}) => {
     + soundslip.createdAt.split("T")[1].split(".")[0])
   const { userId } = useContext(EditContext)
   const download = useRef(null)
-  
+  const tagIcons = {
+    "drums": "fa-solid fa-drum",
+    "synth": "fa-solid fa-wave-square",
+    "bass": "fa-solid fa-house-crack",
+    "lead": "fa-solid fa-music",
+    "voice": "fa-solid fa-microphone-lines",
+    "loop": "fa-solid fa-record-vinyl",
+    "other": "fa-solid fa-blender"
+  }
+  function goToUsersPage(){
+    console.log("redirect to page at username")
+  }
   function downloadSound() {
     let soundslipId = soundslip._id
     let fullUrl = baseUrl + "download/" + soundslipId
@@ -39,11 +50,17 @@ const Results = ({soundslip}) => {
         <a className="lib-download" onClick={() => downloadSound()}><i className="fa-solid fa-floppy-disk"></i></a>
       </div>
       <div className="lib-slip-cell-data">
-        <div>
+        <div className="lib-slip-group">
           <h2 className="lib-slip-title">{soundslip && soundslip.title}</h2>
-          <h2 className="lib-slip-belongs">uploaded by {soundslip && soundslip.userName}</h2>
+          <h2 className="lib-slip-belongs">uploaded by <a className="username-link" onClick={goToUsersPage}>{soundslip && soundslip.userName}</a></h2>
           <h3 className="lib-slip-desc">{soundslip && soundslip.body}</h3>
-          <h3 className="lib-slip-date">{soundslip && parsedDate}</h3>
+          <div className="lib-slip-last-line">
+            <h3 className="lib-slip-date">{soundslip && parsedDate}</h3>
+            <div>
+              <i className={tagIcons[soundslip.tag]}></i>
+              <h4>{soundslip.tag}</h4>
+            </div>
+          </div>
           <a ref={download}></a>
         </div>
       </div>
