@@ -667,7 +667,6 @@ nav > ul > li > a:hover{
 }
 .download i{
   font-size: 2rem;
-  border: solid blue 1px;
 }
 
 
@@ -700,9 +699,6 @@ nav > ul > li > a:hover{
   }
   .navbar > nav > ul > li{
     width: 10%;
-  }
-  .pages{
-    border: solid blue 1px;
   }
   .library{
     margin: 3.4em 0;
