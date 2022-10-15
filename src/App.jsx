@@ -3,9 +3,13 @@ import React, { createContext, useContext, useState, useEffect, useRef } from 'r
 import { ClerkProvider } from '@clerk/clerk-react';
 import MainPlayer from './MainPlayer'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import { dark } from '@clerk/themes';
 
 // Pages & Components
 import Navbar from './components/Navbar';
+import MobileNavbar from './components/MobileNavbar'
 import Library from './components/pages/Library';
 import Profile from './components/pages/Profile';
 import Upload from './components/pages/Upload';
@@ -26,6 +30,7 @@ function App() {
   const [currentSoundPlaying, setCurrentSoundPlaying] = useState(null)
   const [userId, setUserId] = useState(null)
   const playerRef = useRef(new Audio(null))
+  const [matchesMobile, setMatchesMobile] = useState(window.matchMedia("(max-width: 990px)").matches)
 
   function requestUrl(soundslipId){
     let params = {
@@ -69,6 +74,16 @@ function App() {
       playerRef.current.url = playersObj[currentSoundPlaying].url
       setIsPlaying(oldState => true)
     }
+
+    function playEnded(){
+      setIsPlaying(oldState => false)
+    }
+  
+    useEffect(() => {
+      window
+      .matchMedia("(max-width: 990px)")
+      .addEventListener('change', e => setMatchesMobile( e.matches ));
+    }, []);
 
     useEffect(() => {
       if(!playersObj){
@@ -114,16 +129,28 @@ function App() {
         setIsPlaying(playState => false)
       }
     }, [location, locationRef.current, playerRef.current])
-
+    useEffect(() => {
+      const player = playerRef.current;
+      player.addEventListener('ended', playEnded, false);
+  
+      return () => {
+        player.removeEventListener('ended', playEnded, false);
+      };
+    }, [playerRef.current]);
   return (
     <ClerkProvider
     frontendApi={frontendApi}
     navigate={(to) => navigate(to)}
+    appearance={{
+      baseTheme: dark
+    }}
   >
       <div className="App">
         <AudioContext.Provider value={{currentSoundPlaying, setCurrentSoundPlaying, isPlaying, setIsPlaying, setUserId}}>
-          <Navbar />
+          {!matchesMobile && < Navbar />}
+          {matchesMobile && < MobileNavbar />}
           < MainPlayer />
+          < ToastContainer />
           <div className="pages">
             <Routes>
                   <Route path="/library" element={< Library />}>

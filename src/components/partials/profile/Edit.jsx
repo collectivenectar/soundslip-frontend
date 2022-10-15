@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { EditContext } from './ManageSoundslips'
+import { toast } from 'react-toastify'
 
 import axios from 'axios'
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL
@@ -7,6 +8,7 @@ const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL
 const Edit = (props) => {
   const [editForm, setEditForm] = useState(props.soundslip)
   const {setFormSubmit} = useContext(EditContext)
+  const toastTemplate = (msg) => toast(msg)
 
   function handleSubmit(e){
     e.preventDefault()
@@ -19,6 +21,10 @@ const Edit = (props) => {
         }else{
           console.log(response)
         }
+      })
+      .catch(err => {
+        toastTemplate("there was an error submitting your edits")
+        console.log(err)
       })
   }
   function handleChange(e){

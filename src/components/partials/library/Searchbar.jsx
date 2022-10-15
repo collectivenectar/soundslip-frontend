@@ -3,6 +3,8 @@ import { useState, useContext, useRef } from 'react';
 import { EditContext } from '../../pages/Library';
 import axios from 'axios';
 
+import { toast } from 'react-toastify'
+
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips"
 
 const Searchbar = () => {
@@ -21,6 +23,9 @@ const Searchbar = () => {
   // title, description, length, tag, username, MIME type?
   const [queryType, setQueryType] = useState("Title")
   const filtersGrid = useRef(null)
+
+  const toastTemplate = (msg) => toast(msg)
+
   function updateQuery(value) {
     setQuery(newValue => value)
   }
@@ -48,7 +53,6 @@ const Searchbar = () => {
     }
   }
   function requestSearch(){
-    console.log(filters)
     let queries = {
       Username: "/",
       Title: "/",
@@ -70,7 +74,7 @@ const Searchbar = () => {
     }
     if(queryType === "Username"){
       if(query.includes(" ")){
-        console.log("Usernames do not have spaces")
+        toastTemplate("Usernames do not have spaces, please remove any spaces from your search and try again")
       }else{
         axios.get(baseUrl + queries[queryType], params)
           .then((response) => {
@@ -87,7 +91,10 @@ const Searchbar = () => {
         .then((response) => {
           setSoundslips(response.data)
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          console.log(err)
+          toastTemplate("there was a problem submitting your search request")
+        })
     }
   }
   return (

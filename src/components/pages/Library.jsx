@@ -2,6 +2,7 @@ import React, {useEffect, createContext} from 'react'
 import { useLocation } from 'react-router-dom'
 import Results from '../partials/library/Results'
 import Searchbar from '../partials/library/Searchbar'
+import { toast } from 'react-toastify'
 
 import axios from 'axios'
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL
@@ -12,7 +13,7 @@ export const EditContext = createContext(null)
 
 const Library = () => {
   const [soundslips, setSoundslips] = React.useState(false)
-  
+  const toastTemplate = (msg) => toast(msg)
   const { isLoaded, isSignedIn, user } = useUser()
   const userId = !isLoaded || !isSignedIn ? null: user.id;
 
@@ -20,6 +21,9 @@ const Library = () => {
     axios.get(baseUrl + '/soundslips/')
       .then(function(response) {
         setSoundslips(response.data)
+      })
+      .catch(err =>{
+        toastTemplate("loading public results...")
       })
   }, [])
   return (

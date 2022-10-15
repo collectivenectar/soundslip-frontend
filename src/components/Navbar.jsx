@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom'
+import { dark } from '@clerk/themes';
 import { SignedIn, UserButton, useUser } from '@clerk/clerk-react'
 
 const Navbar = () => {

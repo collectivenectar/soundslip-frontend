@@ -2,6 +2,7 @@ import React, { useContext, useRef, useState } from 'react'
 import { EditContext } from './ManageSoundslips'
 import Edit from './Edit'
 import Player from '../../Player'
+import { toast } from 'react-toastify'
 
 import axios from 'axios'
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
@@ -17,9 +18,7 @@ const UserResults = ({soundslip}) => {
     )
   const parsedDate = ("created on " + soundslip.createdAt.split("T")[0] + " at " 
     + soundslip.createdAt.split("T")[1].split(".")[0])
-  const download = useRef(null)
-  const {isEditing, setIsEditing, setFormSubmit, userId} = useContext(EditContext)
-  const [isDeleting, setIsDeleting] = useState(false)
+
   const tagIcons = {
     "drums": "fa-solid fa-drum",
     "synth": "fa-solid fa-wave-square",
@@ -29,6 +28,12 @@ const UserResults = ({soundslip}) => {
     "loop": "fa-solid fa-record-vinyl",
     "other": "fa-solid fa-blender"
   }
+    
+  const download = useRef(null)
+  const {isEditing, setIsEditing, setFormSubmit, userId} = useContext(EditContext)
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  const toastTemplate = (msg) => toast(msg)
 
   function editSoundslip() {
     for(let each = 0; each < Object.keys(isEditing).length; each++){
@@ -59,6 +64,7 @@ const UserResults = ({soundslip}) => {
         }
       })
       .catch(err => {
+        toastTemplate("there was an error deleting your sample, please try again")
         console.log(err)
       })
   }

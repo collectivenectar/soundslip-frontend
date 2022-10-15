@@ -13,12 +13,14 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^4.0.5",
+    "@clerk/themes": "^1.2.19",
     "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^4.0.0",
     "react-router-dom": "^6.3.0",
-    "react-spinners": "^0.13.4"
+    "react-spinners": "^0.13.4",
+    "react-toastify": "^9.0.8"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",

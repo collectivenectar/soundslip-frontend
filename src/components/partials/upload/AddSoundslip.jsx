@@ -1,14 +1,17 @@
-import {useState, useRef} from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, {useState, useRef} from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
-import axios from 'axios'
-const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL
+import axios from 'axios';
+const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
-import {isLoaded, isSignedIn, useUser} from '@clerk/clerk-react'
+import {isLoaded, isSignedIn, useUser} from '@clerk/clerk-react';
 
 const AddSoundslip = () => {
   const navigate = useNavigate()
-
+  const toastUpload = () => toast("uploading...")
+  const toastFailedUpload = () => toast("There was a problem uploading your sample, please try again")
+  const toastTemplate = (msg) => toast(msg)
   const tagsGrid = useRef(null)
   const [tag, setTag] = useState("")
 
@@ -45,7 +48,6 @@ const AddSoundslip = () => {
       })
     }else if(e.target.name === "upload"){
       setSoundslipForm(prevForm => {
-        console.log(e.target.files[0])
         return {
           ...prevForm,
           file: e.target.files[0]
@@ -60,14 +62,14 @@ const AddSoundslip = () => {
             inputValidation = e.target.value
           }else{
             inputValidation = prevForm.title.slice(0, prevForm.title.length)
-            console.log("max character limit reached for description title")
+            toastTemplate("character limit reached for description title: 50")
           }
         }else{
           if(e.target.value.length <= 100){
             inputValidation = e.target.value
           }else{
             inputValidation = prevForm.body.slice(0, prevForm.body.length)
-            console.log("max character limit reached for description body")
+            toastTemplate("character limit reached for description body: 100")
           }
         }
         return {
@@ -96,16 +98,17 @@ const AddSoundslip = () => {
     }
     e.preventDefault()
     if(inputCheck()){
+      toastUpload()
       axios.post(baseUrl + '/soundslips/', soundslipForm, config)
       .then(function(response) {
         if(response.status === 200){
           navigate('/')
         }else{
-          console.log("upload failed")
+          toastFailedUpload()
         }
       })
     }else{
-      console.log("form incomplete, please finish filling it out")
+      toastTemplate("form incomplete, please finish filling it out")
     }
   }
 

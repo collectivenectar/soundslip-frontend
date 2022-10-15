@@ -2,25 +2,31 @@ import React, { useContext, useRef } from 'react'
 import Player from '../../partials/library/Player'
 import { EditContext } from '../../pages/Library'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
 
 const Results = ({soundslip}) => {
   const parsedDate = ("created on " + soundslip.createdAt.split("T")[0] + " at " 
     + soundslip.createdAt.split("T")[1].split(".")[0])
+
+  const tagIcons = {
+      "drums": "fa-solid fa-drum",
+      "synth": "fa-solid fa-wave-square",
+      "bass": "fa-solid fa-house-crack",
+      "lead": "fa-solid fa-music",
+      "voice": "fa-solid fa-microphone-lines",
+      "loop": "fa-solid fa-record-vinyl",
+      "other": "fa-solid fa-blender"
+  }
+  const toastTemplate = (msg) => toast(msg)
+
   const { userId } = useContext(EditContext)
   const download = useRef(null)
-  const tagIcons = {
-    "drums": "fa-solid fa-drum",
-    "synth": "fa-solid fa-wave-square",
-    "bass": "fa-solid fa-house-crack",
-    "lead": "fa-solid fa-music",
-    "voice": "fa-solid fa-microphone-lines",
-    "loop": "fa-solid fa-record-vinyl",
-    "other": "fa-solid fa-blender"
-  }
   function goToUsersPage(){
-    console.log("redirect to page at username")
+    console.log("redirecting to page at username")
+    let userName = soundslip.userName
+    let url = baseUrl + "/user/" + userName
   }
   function downloadSound() {
     let soundslipId = soundslip._id
@@ -38,7 +44,7 @@ const Results = ({soundslip}) => {
         download.current.click()
       })
       .catch(err => {
-        console.log(err)
+        toastTemplate("there seems to be something wrong with the audio file or fileURL")
       })
   }
   return (
@@ -56,7 +62,7 @@ const Results = ({soundslip}) => {
           <h3 className="lib-slip-desc">{soundslip && soundslip.body}</h3>
           <div className="lib-slip-last-line">
             <h3 className="lib-slip-date">{soundslip && parsedDate}</h3>
-            <div>
+            <div className="lib-slip-tags">
               <i className={tagIcons[soundslip.tag]}></i>
               <h4>{soundslip.tag}</h4>
             </div>

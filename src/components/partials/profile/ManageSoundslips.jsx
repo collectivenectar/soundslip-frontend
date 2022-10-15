@@ -26,11 +26,11 @@ const ManageSoundslips = () => {
   }
 
   React.useEffect(() => {
+    
     axios.post(baseUrl + '/profile/', {id: userId})
       .then(function(response) {
         setSoundslips(oldSlips => response.data)
         setupEdit(response.data)
-        console.log(response.data)
         let allSlipsState = {}
         for(let slip = 0; slip < response.data.length; slip++){
           allSlipsState[response.data[slip]._id] = false
