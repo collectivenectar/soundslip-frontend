@@ -788,42 +788,46 @@ nav > ul > li > a:hover{
   .all-user-soundslips{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     height: 190vh;
   }
   .user-slip-cell-cont{
     width: 100vw;
-    height: 80vh;
+    min-height: 60vh;
   }
   .soundslip-container-user{
     line-height: 1em;
     border-bottom: solid #44433c 1px;
     margin-bottom: 0.3em;
-    min-height: 25vh;
+    min-height: 10em;
   }
   .all-user-soundslips > section{
     width: 100vw;
   }
   .slip-panel{
-    max-height: 35vh;
+    min-height: 100%;
   }
   .slip-panel > div{
     width: 15%;
   }
   .slip-panel > div + div{
     width: 85%;
-    height: 5em;
+    height: 100%;
   }
   .soundslip-topline{
     width: 92%;
   }
+  .user-slip-details{
+    display: block;
+    height: 100%;
+  }
   .user-slip-last-line{
     font-size: 0.8em;
-    min-height: 4em;
+    height: 5em;
   }
   .user-slip-tag-group{
-    margin-top: 0.6em;
-   height: 1.5em;
+    margin-top: 1em;
+    height: 1.5em;
   }
 }
 /* @media screen and (min-width: 480px) and (max-width: 540px){
