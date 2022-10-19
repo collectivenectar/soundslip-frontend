@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-const PublicProfile = ({userName}) => {
+const PublicProfile = ({ userName }) => {
     
     return (
         <div>

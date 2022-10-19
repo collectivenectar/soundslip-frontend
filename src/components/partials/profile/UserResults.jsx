@@ -1,13 +1,21 @@
 import React, { useContext, useRef, useState } from 'react'
+
 import { EditContext } from './ManageSoundslips'
 import Edit from './Edit'
 import Player from '../../Player'
-import { toast } from 'react-toastify'
 
+import { toast } from 'react-toastify'
 import axios from 'axios'
+
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
 
-const UserResults = ({soundslip}) => {
+const UserResults = ({ soundslip }) => {
+  const { isEditing, setIsEditing, setFormSubmit, userId } = useContext(EditContext)
+  const [ isDeleting, setIsDeleting ] = useState(false)
+  const download = useRef(null)
+
+  const toastTemplate = (msg) => toast(msg)
+
   const parsedTitle = (soundslip.title.slice(0, soundslip.title.length >= 35
         ? 35
         : soundslip.title.length) 
@@ -28,12 +36,6 @@ const UserResults = ({soundslip}) => {
     "loop": "fa-solid fa-record-vinyl",
     "other": "fa-solid fa-blender"
   }
-    
-  const download = useRef(null)
-  const {isEditing, setIsEditing, setFormSubmit, userId} = useContext(EditContext)
-  const [isDeleting, setIsDeleting] = useState(false)
-
-  const toastTemplate = (msg) => toast(msg)
 
   function editSoundslip() {
     for(let each = 0; each < Object.keys(isEditing).length; each++){
@@ -51,9 +53,25 @@ const UserResults = ({soundslip}) => {
       }
     }
   }
+
   function toggleConfirmDialog(){
     setIsDeleting(oldState => !oldState)
   }
+
+  const confirmDelete = (
+    <div className="delete-dialog-cont">{soundslip.title}
+      <h2 className="delete-dialog-lbl">Are you sure you want to delete this sound?</h2>
+      <div className="delete-dialog-buttons">
+        <button className="delete-dialog-button" onClick={deleteSoundslip}>
+          Yes
+        </button>
+        <button className="delete-dialog-button"onClick={toggleConfirmDialog}>
+          No
+        </button>
+      </div>
+    </div>
+  )
+
   function deleteSoundslip(){
     axios.delete(baseUrl + `${soundslip._id}`, {userId: userId})
       .then(response => {
@@ -68,19 +86,7 @@ const UserResults = ({soundslip}) => {
         console.log(err)
       })
   }
-  const confirmDelete = (
-      <div className="delete-dialog-cont">{soundslip.title}
-        <h2 className="delete-dialog-lbl">Are you sure you want to delete this sound?</h2>
-        <div className="delete-dialog-buttons">
-          <button className="delete-dialog-button" onClick={deleteSoundslip}>
-            Yes
-          </button>
-          <button className="delete-dialog-button"onClick={toggleConfirmDialog}>
-            No
-          </button>
-        </div>
-      </div>
-  )
+
   function downloadSound(){
     let soundslipId = soundslip._id
     let fullUrl = baseUrl + "download/" + soundslipId
@@ -100,9 +106,10 @@ const UserResults = ({soundslip}) => {
         console.log(err)
       })
   }
+
   return (
     <div className="soundslip-container-user">
-      {isDeleting && confirmDelete}
+      { isDeleting && confirmDelete }
       <section className="slip-panel">
         <div className="user-player-section">
           < Player 
@@ -133,11 +140,12 @@ const UserResults = ({soundslip}) => {
         </div>
       </section>
       <section>
-      {isEditing[soundslip._id] &&
-        < Edit
-          key={soundslip._id}
-          soundslip={soundslip}
-          />}
+        { isEditing[soundslip._id] &&
+            < Edit
+              key={soundslip._id}
+              soundslip={soundslip}
+            />
+        }
       </section>
     </div>
   )

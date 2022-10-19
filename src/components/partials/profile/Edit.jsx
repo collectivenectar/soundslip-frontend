@@ -1,13 +1,16 @@
 import React, { useState, useContext } from 'react'
+
 import { EditContext } from './ManageSoundslips'
 import { toast } from 'react-toastify'
 
 import axios from 'axios'
+
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL
 
 const Edit = (props) => {
-  const [editForm, setEditForm] = useState(props.soundslip)
-  const {setFormSubmit} = useContext(EditContext)
+  const [ editForm, setEditForm ] = useState(props.soundslip)
+  const { setFormSubmit } = useContext(EditContext)
+
   const toastTemplate = (msg) => toast(msg)
 
   function handleSubmit(e){
@@ -27,8 +30,10 @@ const Edit = (props) => {
         console.log(err)
       })
   }
+
   function handleChange(e){
-    const {name, value, type, checked} = e.target
+    const { name, value, type, checked } = e.target
+
     setEditForm(oldValues => {
         return {
         ...oldValues,
@@ -41,15 +46,15 @@ const Edit = (props) => {
     <div className="edit-container">
       <form className="edit-form">
         <label>Title
-          <input type="text" name="title" value={editForm.title} onChange={handleChange} placeholder={editForm.title}></input>
+          <input type="text" name="title" value={ editForm.title } onChange={ handleChange } placeholder={ editForm.title }></input>
         </label>
         <label>Description
-          <textarea type="textarea" name="body" value={editForm.body} onChange={handleChange}></textarea>
+          <textarea type="textarea" name="body" value={ editForm.body } onChange={ handleChange }></textarea>
           </label>
         <label>Public
-          <input className="edit-public" type="checkbox" name="public" checked={editForm.public} onChange={handleChange}></input>
+          <input className="edit-public" type="checkbox" name="public" checked={ editForm.public } onChange={ handleChange }></input>
           </label>
-        <input className="edit-submit" type="submit" onClick={e => handleSubmit(e)} value="save changes"></input>
+        <input className="edit-submit" type="submit" onClick={ e => handleSubmit(e) } value="save changes"></input>
       </form>
     </div>
   )

@@ -1,14 +1,16 @@
-import { useState, useEffect, useContext } from 'react';
-import { AudioContext } from '../../../App';
+import React, { useState, useEffect, useContext } from 'react'
 
-const Player = (props) => {
+import { AudioContext } from '../../../App'
+
+const Player = ( props ) => {
     const {
         currentSoundPlaying, 
         setCurrentSoundPlaying, 
         isPlaying, 
         setIsPlaying 
     } = useContext(AudioContext)
-    const [isThisOnePlaying, setIsThisOnePlaying] = useState(false)
+
+    const [ isThisOnePlaying, setIsThisOnePlaying ] = useState(false)
     
     function togglePlay() {
         let soundslipId = props.soundslip._id
@@ -21,17 +23,19 @@ const Player = (props) => {
             setIsPlaying(playState => false)
         }
         
-      }
+    }
+
     useEffect(() => {
         if(currentSoundPlaying === props.soundslip._id){
             setIsThisOnePlaying(playState => isPlaying)
         }else{
             setIsThisOnePlaying(playState => false)
         }
-    }, [isPlaying, currentSoundPlaying])
+    }, [ isPlaying, currentSoundPlaying ])
+
     return (
-        < div className="lib-player-container">
-            <span className="audio-player-lib" onClick={togglePlay}>{isThisOnePlaying? <i className="fa-solid fa-pause"></i>: <i className="fa-solid fa-play"></i>}</span>
+        <div className="lib-player-container">
+            <span className="audio-player-lib" onClick={ togglePlay }>{ isThisOnePlaying? <i className="fa-solid fa-pause"></i>: <i className="fa-solid fa-play"></i> }</span>
         </div>
     )
 }

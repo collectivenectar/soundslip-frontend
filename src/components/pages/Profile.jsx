@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+
 import ManageSoundslips from '../partials/profile/ManageSoundslips'
 
-import {SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react'
+import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react'
 
 const Home = () => {
+  
   return (
     <div className="home">
       <SignedIn>

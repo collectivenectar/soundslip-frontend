@@ -1,36 +1,38 @@
-import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
-import { ClerkProvider } from '@clerk/clerk-react';
-import MainPlayer from './MainPlayer'
-import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
-import { dark } from '@clerk/themes';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react'
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 
 // Pages & Components
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar'
 import MobileNavbar from './components/MobileNavbar'
-import Library from './components/pages/Library';
-import Profile from './components/pages/Profile';
-import Upload from './components/pages/Upload';
+import Library from './components/pages/Library'
+import Profile from './components/pages/Profile'
+import Upload from './components/pages/Upload'
+import MainPlayer from './MainPlayer'
+
+// 3rd party stuff
+import { ClerkProvider } from '@clerk/clerk-react'
+import { dark } from '@clerk/themes'
+import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const frontendApi = import.meta.env.VITE_REACT_APP_CLERK_FRONTEND_API;
+const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
 
 export const AudioContext = createContext(null)
 
-const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
-
 function App() {
-    const location = useLocation()
+  const location = useLocation()
   const navigate = useNavigate()
   const locationRef = useRef(location)
 
-  const [playersObj, setPlayersObj] = useState(false)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [currentSoundPlaying, setCurrentSoundPlaying] = useState(null)
-  const [userId, setUserId] = useState(null)
+  const [ playersObj, setPlayersObj ] = useState(false)
+  const [ isPlaying, setIsPlaying ] = useState(false)
+  const [ currentSoundPlaying, setCurrentSoundPlaying ] = useState(null)
+  const [ userId, setUserId ] = useState(null)
   const playerRef = useRef(new Audio(null))
-  const [matchesMobile, setMatchesMobile] = useState(window.matchMedia("(max-width: 990px)").matches)
+
+  const [ matchesMobile, setMatchesMobile ] = useState(window.matchMedia("(max-width: 990px)").matches)
 
   function requestUrl(soundslipId){
     let params = {
@@ -52,16 +54,12 @@ function App() {
       setPlayersObj(oldObj => {
         if(oldObj === false){
           return {
-            [soundslipId]: {
-              url: newUrl
-            }
+            [soundslipId]: { url: newUrl }
           }
         }else{
           return {
             ...oldObj,
-            [soundslipId]: {
-              url: newUrl
-            }
+            [soundslipId]: { url: newUrl }
           }
         }
       })
@@ -99,7 +97,7 @@ function App() {
           }
         }
       }
-    }, [currentSoundPlaying, playersObj, playerRef.current])
+    }, [ currentSoundPlaying, playersObj, playerRef.current ])
 
     useEffect(() => {
       if(isPlaying){
@@ -116,19 +114,19 @@ function App() {
           playerRef.current.pause()
         }
       }
-    }, [isPlaying, playersObj, playerRef.current])
+    }, [ isPlaying, playersObj, playerRef.current ])
 
     useEffect(() => {
       if(locationRef.current.pathname !== location.pathname){
         if(playerRef.current.src !== null){
           setIsPlaying(playState => false)
           playerRef.current.value = ""
-        }else{
         }
       }else if(locationRef.current.pathname === location.pathname){
         setIsPlaying(playState => false)
       }
-    }, [location, locationRef.current, playerRef.current])
+    }, [ location, locationRef.current, playerRef.current ])
+
     useEffect(() => {
       const player = playerRef.current;
       player.addEventListener('ended', playEnded, false);
@@ -136,34 +134,35 @@ function App() {
       return () => {
         player.removeEventListener('ended', playEnded, false);
       };
-    }, [playerRef.current]);
+    }, [ playerRef.current ]);
+    
   return (
     <ClerkProvider
-    frontendApi={frontendApi}
-    navigate={(to) => navigate(to)}
-    appearance={{
-      baseTheme: dark
-    }}
-  >
+      frontendApi={frontendApi}
+      navigate={(to) => navigate(to)}
+      appearance={{
+        baseTheme: dark
+      }}
+    >
       <div className="App">
-        <AudioContext.Provider value={{currentSoundPlaying, setCurrentSoundPlaying, isPlaying, setIsPlaying, setUserId}}>
-          {!matchesMobile && < Navbar />}
-          {matchesMobile && < MobileNavbar />}
+        <AudioContext.Provider value={{ currentSoundPlaying, setCurrentSoundPlaying, isPlaying, setIsPlaying, setUserId }}>
+          { !matchesMobile && < Navbar /> }
+          { matchesMobile && < MobileNavbar /> }
           < MainPlayer />
           < ToastContainer />
           <div className="pages">
             <Routes>
-                  <Route path="/library" element={< Library />}>
+                  <Route path="/library" element={ < Library /> }>
                   </Route>
-                  <Route path="/" element={< Profile />}>
+                  <Route path="/" element={ < Profile /> }>
                   </Route>
-                  <Route path="/upload" element={<Upload />}>
+                  <Route path="/upload" element={ <Upload /> }>
                   </Route>
               </Routes>
           </div>
         </ AudioContext.Provider>
       </div>
-  </ClerkProvider>
+    </ClerkProvider>
   )
 }
 
