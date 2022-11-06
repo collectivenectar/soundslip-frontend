@@ -104,20 +104,23 @@ const AddSoundslip = () => {
   function handleSubmit(e){
     const config = {
       headers: {
-          'content-type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
       }
     }
     e.preventDefault()
     if(inputCheck()){
       toastUpload()
       axios.post(baseUrl + '/soundslips/', soundslipForm, config)
-      .then(function(response) {
-        if(response.status === 200){
-          navigate('/')
-        }else{
-          toastFailedUpload()
-        }
-      })
+        .then(function(response) {
+          if(response.status === 200){
+            navigate('/')
+          }else{
+            toastFailedUpload()
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }else{
       toastTemplate("form incomplete, please finish filling it out")
     }

@@ -76,7 +76,7 @@ const UserResults = ({ soundslip }) => {
   )
 
   function deleteSoundslip(){
-    axios.delete(baseUrl + `${soundslip._id}`, {userId: userId})
+    axios.delete(baseUrl + `${soundslip._id}`, { data: { userId: userId } } )
       .then(response => {
         if(response.statusText === "OK"){
           setFormSubmit(submitted => submitted + 1)
