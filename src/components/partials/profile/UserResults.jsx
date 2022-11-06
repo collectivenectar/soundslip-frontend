@@ -37,7 +37,10 @@ const UserResults = ({ soundslip }) => {
     "other": "fa-solid fa-blender"
   }
 
-  function editSoundslip() {
+  function editSoundslip(e) {
+    if(e.target.localName === "i"){
+      return false
+    }
     for(let each = 0; each < Object.keys(isEditing).length; each++){
       let visible = Object.keys(isEditing)[each]
       if(soundslip._id === visible){
@@ -120,18 +123,18 @@ const UserResults = ({ soundslip }) => {
             <i className="fa-solid fa-floppy-disk"></i>
           </a>
         </div>
-        <div className="user-slip-details">
+        <div className="user-slip-details" onClick={editSoundslip}>
           <div className="soundslip-topline">
-            <h2 className="soundslip-title" onClick={editSoundslip} >{soundslip && parsedTitle}</h2>
+            <h2 className="soundslip-title">{soundslip && parsedTitle}</h2>
             <div className="soundslip-actions">
               <a className="soundslip-delete" onClick={toggleConfirmDialog}>
                 <i className="fa-solid fa-delete-left"></i>
               </a>
             </div>
           </div>
-          <h3 className="soundslip-desc" onClick={editSoundslip}>{soundslip && soundslip.body}</h3>
+          <h3 className="soundslip-desc">{soundslip && soundslip.body}</h3>
           <div className="user-slip-last-line">
-            <h3 className="soundslip-date" onClick={editSoundslip}>{soundslip && parsedDate}</h3>
+            <h3 className="soundslip-date">{soundslip && parsedDate}</h3>
             <div className="user-slip-tag-group">
               <i className={tagIcons[soundslip.tag]}></i>
               <h4>{soundslip.tag}</h4>

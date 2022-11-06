@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react'
+import React, { useState, useEffect, createContext } from 'react'
 
 import UserResults from './UserResults'
 
@@ -13,10 +13,11 @@ const ManageSoundslips = () => {
   const { isLoaded, isSignedIn, user } = useUser()
   const userId = !isLoaded || !isSignedIn ? null: user.id;
 
-  const [ soundslips, setSoundslips  ] = React.useState(false)
-  const [ isEditing, setIsEditing ] = React.useState({})
-  const [ formSubmit, setFormSubmit ] = React.useState(0)
-  const [ soundPlaying, setSoundPlaying ] = React.useState(0)
+  const [ soundslips, setSoundslips  ] = useState(false)
+  const [ isEditing, setIsEditing ] = useState({})
+  const [ formSubmit, setFormSubmit ] = useState(0)
+  const [ soundPlaying, setSoundPlaying ] = useState(0)
+  const [ displayLoading, setDisplayLoading ] = useState(true)
 
   function setupEdit(soundslips) {
     let editStateArray = {}
@@ -26,10 +27,12 @@ const ManageSoundslips = () => {
     setIsEditing(oldArray => editStateArray)
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
+
     axios.post(baseUrl + '/profile/', {id: userId})
       .then(function(response) {
         setSoundslips(oldSlips => response.data)
+        setDisplayLoading(false)
         setupEdit(response.data)
         let allSlipsState = {}
         for(let slip = 0; slip < response.data.length; slip++){
@@ -38,6 +41,9 @@ const ManageSoundslips = () => {
         setSoundPlaying(oldValue => allSlipsState)
       })
       .catch(err => console.log(err))
+      return (
+        setDisplayLoading(true)
+      )
   }, [formSubmit])
 
   return (
@@ -45,7 +51,10 @@ const ManageSoundslips = () => {
       <section className="public-soundslips">
         <h2>Public Uploads</h2>
         <EditContext.Provider value={{ isEditing, setIsEditing, setFormSubmit, soundPlaying, setSoundPlaying, userId }}>
-          <div className="user-slip-cell-cont" >{soundslips && soundslips.map(soundslip => {
+          <div className="user-slip-cell-cont" >
+            {!soundslips && !displayLoading && (<a className="bad-search-response" >You haven't uploaded any public samples yet.</a>)}
+            {displayLoading && (<div className="loading-sample-cell">fetching public samples...</div>)}
+            {soundslips && soundslips.map(soundslip => {
             if(soundslip.public){
               return (
                 <UserResults
@@ -62,7 +71,10 @@ const ManageSoundslips = () => {
       <section className="private-soundslips">
         <h2>Private Uploads</h2>
         <EditContext.Provider value={{ isEditing, setIsEditing, setFormSubmit, soundPlaying, setSoundPlaying, userId }}>
-          <div className="user-slip-cell-cont">{soundslips && soundslips.map(soundslip => {
+          <div className="user-slip-cell-cont">
+            {!soundslips && !displayLoading && (<a className="bad-search-response" >You haven't uploaded any private samples yet.</a>)}
+            {displayLoading && (<div className="loading-sample-cell">fetching private samples...</div>)}
+            {soundslips && soundslips.map(soundslip => {
             if(!soundslip.public){
               return (
                 <UserResults

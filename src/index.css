@@ -25,7 +25,7 @@ body {
 }
 .pages{
   width: 100%;
-  height: 90%;
+  min-height: 49em;
   margin: 0;
   padding: 0;
   overflow-y: hidden;
@@ -35,14 +35,14 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 90vh;
+  height: 100%;
   font-family: 'Silkscreen', cursive;
 }
 .home{
-  height: 90vh;
+  height: 44.5rem;
 }
 .upload{
-  height: 90vh;
+  min-height: 90vh;
 }
 
 /* Components */
@@ -142,6 +142,8 @@ nav > ul > li > a:hover{
 /* LIB - SEARCH PANEL */
 .searchbar-container{
   min-width: 25%;
+  max-width: 25%;
+  min-height: 46em;
   padding: 1.5em;
   background-color: #22252d;
 }
@@ -358,7 +360,7 @@ nav > ul > li > a:hover{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  height: 90vh;
+  min-height: 90vh;
   width: 100%;
 }
 .public-soundslips{
@@ -367,7 +369,7 @@ nav > ul > li > a:hover{
 }
 .private-soundslips{
   font-family: 'Silkscreen', cursive;
-  color:#aaa88e;
+  color:#c6c5b6;
 }
 .user-slip-cell-cont{
   height: 81vh;
@@ -601,7 +603,7 @@ nav > ul > li > a:hover{
   border-radius: 5px;
   margin: 0 auto;
   width: 75%;
-  height: 6vh;
+  height: 2em;
   font-family: 'Silkscreen', sans-serif;
   font-size: 1.2em;
   padding-left: 1em;
@@ -611,8 +613,8 @@ nav > ul > li > a:hover{
   border: solid white 3px;
 }
 .upload-text:only-of-type{
-  height: 11vh;
-  padding: 1vh;
+  height: 5em;
+  padding: 0.8em;
 }
 .upload-checkbox{
   margin: 1vh 0 4vh 0;
@@ -625,7 +627,7 @@ nav > ul > li > a:hover{
 }
 .upload-button{
   margin: auto;
-  height: 6vh;
+  height: 2em;
   width: 30%;
   background-color: #9d9b86;
   border-radius: 5px;
@@ -731,7 +733,10 @@ nav > ul > li > a:hover{
   }
   .searchbar-container{
     max-width: 100vw;
-    height: 90vh;
+    min-height: 32em;
+  }
+  .lib-slip-container{
+    min-height: 20em;
   }
   .filters-title{
     margin-top: 0.7em;
@@ -740,7 +745,7 @@ nav > ul > li > a:hover{
     max-width: 100%;
     min-height: 25%;
     line-height: 1.2em;
-    padding-left: 0em;
+    padding: 0em 0.4em;
     justify-content: space-between;
   }
   .lib-slip-cell-data{
@@ -749,6 +754,7 @@ nav > ul > li > a:hover{
   .lib-slip-last-line{
     font-size: 1em;
     min-height: 3.5em;
+    padding-right: 1em;
   }
   .lib-slip-last-line > div{
     margin-top: 1em;
@@ -779,19 +785,19 @@ nav > ul > li > a:hover{
   }
   .upload-button{
     margin: 5em auto 2em auto;
-    height: 6vh;
+    height: 2em;
     width: 30%;
     background-color: #9d9b86;
     border-radius: 5px;
   }
   .home{
-    height: 190vh;
+    min-height: 190vh;
   }
   .all-user-soundslips{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 190vh;
+    min-height: 190vh;
   }
   .user-slip-cell-cont{
     width: 100vw;
@@ -817,7 +823,10 @@ nav > ul > li > a:hover{
     height: 100%;
   }
   .soundslip-topline{
-    width: 92%;
+    min-width: 92%;
+  }
+  .soundslip-delete{
+    margin-right: 2em;
   }
   .user-slip-details{
     display: block;
@@ -830,102 +839,6 @@ nav > ul > li > a:hover{
   .user-slip-tag-group{
     margin-top: 1em;
     height: 1.5em;
+    margin-right: 1.4em;
   }
 }
-/* @media screen and (min-width: 480px) and (max-width: 540px){
-  .navbar{
-    height: 9vh;
-  }
-  .library{
-    flex-direction: column;
-    height: 190vh;
-  }
-  .searchbar-container{
-    height: 60vh;
-  }
-  .filters-title{
-    margin-top: 0.7em;
-  }
-  .filters-grid{
-    width: 70%;
-    margin: auto;
-  }
-  .lib-slip-cell{
-    max-width: 100%;
-    min-height: 20%;
-    line-height: 1.2em;
-    padding-left: 0em;
-    justify-content: space-between;
-  }
-  .lib-slip-cell-data{
-    width: 80%;
-  }
-  .lib-download{
-    width: 100%;
-    padding-left: 0;
-    margin: 25% 0 0 45%;
-  }
-  .lib-download i{
-    color: #37436e;
-    font-size: 2.4em;
-  }
-  .create-new{
-    width: 100%;
-  }
-  .create-new > label{
-    text-align: center;
-    margin: 0.5em 0;
-  }
-  .file-upload{
-    height: 8vh;
-    width: 50%;
-  }
-  .upload-button{
-    margin: 5em auto 2em auto;
-    height: 6vh;
-    width: 30%;
-    background-color: #9d9b86;
-    border-radius: 5px;
-  }
-  .home{
-    height: 190vh;
-  }
-  .all-user-soundslips{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 190vh;
-  }
-  .user-slip-cell-cont{
-    width: 100vw;
-    height: 80vh;
-  }
-  .soundslip-container-user{
-    line-height: 1em;
-    border-bottom: solid #44433c 1px;
-    margin-bottom: 0.3em;
-    min-height: 30vh;
-  }
-  .all-user-soundslips > section{
-    width: 100vw;
-  }
-  .slip-panel{
-    max-height: 35vh;
-  }
-  .slip-panel > div{
-    width: 15%;
-  }
-  .slip-panel > div + div{
-    width: 85%;
-  }
-  .soundslip-topline{
-    width: 92%;
-  }
-} */
-/* @media screen and (min-width: 540px) and (max-width: 640px){
-}
-@media screen and (min-width: 640px) and (max-width: 800px){
-}
-@media screen and (min-width: 990px) and (max-width: 1350px){
- 
-} */
