@@ -119,7 +119,7 @@ const AddSoundslip = () => {
           }
         })
         .catch(err => {
-          console.log(err)
+          toastTemplate("Whoa there, this is just a sample, right? For the moment, the limit is 2MB until IPFS is integrated")
         })
     }else{
       toastTemplate("form incomplete, please finish filling it out")
