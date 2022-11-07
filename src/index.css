@@ -460,6 +460,7 @@ nav > ul > li > a:hover{
 .soundslip-actions > *{
   padding: 0.9rem 0.5em;
   margin: 0;
+  display: block;
 }
 .user-player-section{
   width: 10%;

@@ -7,8 +7,6 @@ import { isLoaded, isSignedIn, useUser } from '@clerk/clerk-react'
 
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL
 // const https = require('https')
-// const projectId = '2GUE6xRd2DWOUNeGZ3X6BW9GyLo'
-// const projectSecret = 'c526309eeef0199441aa6f665928e676';
 
 const AddSoundslip = () => {
   const navigate = useNavigate()

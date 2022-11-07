@@ -8,7 +8,8 @@ export default defineConfig({
       "https://soundslip-server.herokuapp.com": {
         target: "https://soundslip-server.herokuapp.com",
         changeOrigin: true,
-        secure: false
+        secure: false,
+        rewrite: (path) => "https://soundslip-server.herokuapp.com"
       }
     }
   },
