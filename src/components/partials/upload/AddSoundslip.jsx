@@ -31,11 +31,11 @@ const AddSoundslip = () => {
   const toastFailedUpload = () => toast("There was a problem uploading your sample, please try again")
   const toastTemplate = (msg) => toast(msg)
 
-  // const callIpfs = () => {
-  //   const xhr = XMLHttpRequest()
-  //   xhr.setRequestHeader("Authorization", "Basic" + btoa(projectId + ":" + projectSecret));
+  const callIpfs = () => {
+    const xhr = XMLHttpRequest()
+    xhr.setRequestHeader("Authorization", "Basic" + btoa(projectId + ":" + projectSecret));
 
-  // }
+  }
 
   function toggleTag(e){
     setTag(oldState => e.target.parentElement.name)
@@ -185,7 +185,7 @@ const AddSoundslip = () => {
       </section>
       </div>
       <button className="upload-button" onClick={ handleSubmit }>upload</button>
-      {/* <button onClick={ callIpfs }>Test IPFS Stuff</button> */}
+      <button onClick={ callIpfs }>Test IPFS Stuff</button>
     </form>
   )
 }
