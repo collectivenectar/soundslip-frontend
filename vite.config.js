@@ -5,11 +5,11 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   server: {
     proxy: {
-      "https://soundslip-server.onrender.com": {
-        target: "https://soundslip-server.onrender.com",
+      "https://soundslip-server.herokuapp.com": {
+        target: "https://soundslip-server.herokuapp.com",
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => "https://soundslip-server.onrender.com"
+        rewrite: (path) => "https://soundslip-server.herokuapp.com"
       }
     }
   },

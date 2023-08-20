@@ -1,5 +1,5 @@
 {
-  "proxy": "https://soundslip-server.onrender.com",
+  "proxy": "https://soundslip-server.herokuapp.com",
   "name": "soundslip",
   "private": true,
   "version": "0.0.0",
