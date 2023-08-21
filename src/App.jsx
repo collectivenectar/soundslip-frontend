@@ -8,6 +8,7 @@ import Library from './components/pages/Library'
 import Profile from './components/pages/Profile'
 import Upload from './components/pages/Upload'
 import MainPlayer from './MainPlayer'
+import styles from '../src/App.module.css'
 
 // 3rd party stuff
 import { ClerkProvider } from '@clerk/clerk-react'
@@ -16,10 +17,13 @@ import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
+// vite environment variables
 const frontendApi = import.meta.env.VITE_REACT_APP_CLERK_FRONTEND_API;
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
 
+// React hooks for state provisioning 
 export const AudioContext = createContext(null)
+export const LightModeContext = createContext(true)
 
 function App() {
   console.log(frontendApi)
@@ -32,6 +36,8 @@ function App() {
   const [ currentSoundPlaying, setCurrentSoundPlaying ] = useState(null)
   const [ userId, setUserId ] = useState(null)
   const playerRef = useRef(new Audio(null))
+
+  const [ lightModeState, setLightModeState ] = useState(true)
 
   const [ matchesMobile, setMatchesMobile ] = useState(window.matchMedia("(max-width: 990px)").matches)
 
@@ -146,6 +152,7 @@ function App() {
       }}
     >
       <div className="App">
+        <LightModeContext.Provider value={{ lightModeState, setLightModeState }}>
         <AudioContext.Provider value={{ currentSoundPlaying, setCurrentSoundPlaying, isPlaying, setIsPlaying, setUserId }}>
           { !matchesMobile && < Navbar /> }
           { matchesMobile && < MobileNavbar /> }
@@ -162,6 +169,7 @@ function App() {
               </Routes>
           </div>
         </ AudioContext.Provider>
+        </LightModeContext.Provider>
       </div>
     </ClerkProvider>
   )

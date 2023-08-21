@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react'
+import React, { useState, useEffect, createContext, useContext } from 'react'
 
 import Results from '../partials/library/Results'
 import Searchbar from '../partials/library/Searchbar'
@@ -6,6 +6,8 @@ import Searchbar from '../partials/library/Searchbar'
 import { toast } from 'react-toastify'
 import { ClerkProvider, SignedIn, SignedOut, useUser, RedirectToSignIn } from '@clerk/clerk-react'
 import axios from 'axios'
+import styles from '../pages/Library.modules.css'
+import { LightModeContext } from '../../App'
 
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL
 
@@ -15,6 +17,8 @@ const Library = () => {
   const [ soundslips, setSoundslips ] = useState(false)
   const { isLoaded, isSignedIn, user } = useUser()
   const [ displayLoading, setDisplayLoading ] = useState( true )
+
+  const lightModeOn = useContext(LightModeContext);
 
   const toastTemplate = (msg) => toast(msg)
   const userId = !isLoaded || !isSignedIn ? null: user.id;

@@ -1,0 +1,22 @@
+.library{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    font-family: 'Silkscreen', cursive;
+}
+.bad-search-response{
+    width: 100%;
+    margin: 3em auto;
+    text-align: center;
+    font-size: 1.5em;
+    color: white;
+}
+.loading-sample-cell{
+    /* this is for UI being shown as a cell with a 'loading' msg during a loading state */
+}
+.lib-slip-container{
+    overflow-y:scroll;
+    overflow-x:hidden;
+    width: 100%;
+}
