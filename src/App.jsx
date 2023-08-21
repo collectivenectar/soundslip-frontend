@@ -22,6 +22,7 @@ const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
 export const AudioContext = createContext(null)
 
 function App() {
+  console.log(frontendApi)
   const location = useLocation()
   const navigate = useNavigate()
   const locationRef = useRef(location)
@@ -38,7 +39,7 @@ function App() {
     let params = {
       id: userId,
       headers: {
-        'Content-Type': 'audio/mpeg'
+        'Content-Type': 'audio/mpeg',
       },
     }
     axios.get(baseUrl + soundslipId, {params})

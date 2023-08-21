@@ -6,7 +6,6 @@ import axios from 'axios'
 import { isLoaded, isSignedIn, useUser } from '@clerk/clerk-react'
 
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL
-// const https = require('https')
 
 const AddSoundslip = () => {
   const navigate = useNavigate()
@@ -30,12 +29,6 @@ const AddSoundslip = () => {
   const toastUpload = () => toast("uploading...")
   const toastFailedUpload = () => toast("There was a problem uploading your sample, please try again")
   const toastTemplate = (msg) => toast(msg)
-
-  const callIpfs = () => {
-    const xhr = XMLHttpRequest()
-    xhr.setRequestHeader("Authorization", "Basic" + btoa(projectId + ":" + projectSecret));
-
-  }
 
   function toggleTag(e){
     setTag(oldState => e.target.parentElement.name)
@@ -185,7 +178,6 @@ const AddSoundslip = () => {
       </section>
       </div>
       <button className="upload-button" onClick={ handleSubmit }>upload</button>
-      <button onClick={ callIpfs }>Test IPFS Stuff</button>
     </form>
   )
 }
