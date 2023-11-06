@@ -1,0 +1,28 @@
+.allUserSoundslips {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  min-height: 90vh;
+  width: 100%;
+}
+.publicSoundslips {
+  font-family: 'Silkscreen', cursive;
+  color: #c6c5b6;
+}
+.privateSoundslips {
+  font-family: 'Silkscreen', cursive;
+  color: #c6c5b6;
+}
+.userSlipCellCont {
+  height: 81vh;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.badSearchResponse {
+  width: 100%;
+  margin: 3em auto;
+  text-align: center;
+  font-size: 1.5em;
+  color: white;
+}

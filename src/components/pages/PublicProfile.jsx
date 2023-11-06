@@ -1,12 +1,9 @@
-import React from 'react'
+import React from 'react';
+
+import styles from './PublicProfile.module.scss';
 
 const PublicProfile = ({ userName }) => {
-    
-    return (
-        <div>
+  return <div></div>;
+};
 
-        </div>
-    )
-}
-
-export default PublicProfile
+export default PublicProfile;

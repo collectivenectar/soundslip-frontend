@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
+/* layout */
+:root {
+  --primary: #1aac83;
+  --error: #e7195a;
+}
+html{
+  height: 100%;
+}
+body {
+  background: #30343F;
+  margin: 0;
+  height: 100%;
+}
+
+/* CLERK STUFF */
+
+.cl-userButtonAvatarBox{
+  width: 3rem;
+  height: 3rem;
+}
+
+/* ICONS ETC */
+.download{
+  border: solid green 1px;
+}
+.download i{
+  font-size: 2rem;
+}
+
+
+@media all and (max-width: 990px){
+  .navbar{
+    height: 10vh;
+    width: 100%;
+  }
+  .navbar > nav{
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    font-size: 1em;
+  }
+  .navbar > nav > a{
+    margin: 1em 1em;
+    width: 22%;
+    height: 1.4em;
+    padding: 0.4em;
+  }
+  .navbar > nav > ul{
+    display: flex;
+    flex-direction: row;
+    list-style-type:none;
+    justify-content: space-around;
+    width: 40%;
+    height: 1.8em;
+    margin: 1em 0em 0 0;
+    border: solid #2a2e3a 1px; 
+  }
+  .navbar > nav > ul > li{
+    width: 10%;
+  }
+  .library{
+    margin: 3.4em 0;
+    flex-direction: column;
+    height: 190vh;
+    overflow-y: scroll;
+  }
+  .upload{
+    margin: 3.4em 0;
+  }
+  .home{
+    margin: 3.4em 0 0 0;
+  }
+  .public-soundslips > h2{
+    padding: 1em;
+    height: 2em;
+    color: #2a2e3a;
+    background-color: #aaa88e;
+    margin: 0 0;
+  }
+  .private-soundslips > h2{
+    margin-left: 0;
+    padding: 1em;
+    height: 2em;
+    color: #2a2e3a;
+    background-color: #aaa88e;
+    margin: 0 0;
+  }
+  .searchbar-container{
+    max-width: 100vw;
+    min-height: 32em;
+  }
+  .lib-slip-container{
+    min-height: 20em;
+  }
+  .filters-title{
+    margin-top: 0.7em;
+  }
+  .lib-slip-cell{
+    max-width: 100%;
+    min-height: 25%;
+    line-height: 1.2em;
+    padding: 0em 0.4em;
+    justify-content: space-between;
+  }
+  .lib-slip-cell-data{
+    width: 80%;
+  }
+  .lib-slip-last-line{
+    font-size: 1em;
+    min-height: 3.5em;
+    padding-right: 1em;
+  }
+  .lib-slip-last-line > div{
+    margin-top: 1em;
+  }
+  .lib-download{
+    width: 100%;
+    padding-left: 0;
+    margin: 25% 0 0 45%;
+  }
+  .lib-download i{
+    color: #37436e;
+    font-size: 2.4em;
+  }
+  .cl-userButtonAvatarBox{
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .create-new{
+    width: 100%;
+  }
+  .create-new > label{
+    text-align: center;
+    margin: 0.5em 0;
+  }
+  .file-upload{
+    height: 8vh;
+    width: 50%;
+  }
+  .upload-button{
+    margin: 5em auto 2em auto;
+    height: 2em;
+    width: 30%;
+    background-color: #9d9b86;
+    border-radius: 5px;
+  }
+  .home{
+    min-height: 190vh;
+  }
+  .all-user-soundslips{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 190vh;
+  }
+  .user-slip-cell-cont{
+    width: 100vw;
+    min-height: 60vh;
+  }
+  .soundslip-container-user{
+    line-height: 1em;
+    border-bottom: solid #44433c 1px;
+    margin-bottom: 0.3em;
+    min-height: 10em;
+  }
+  .all-user-soundslips > section{
+    width: 100vw;
+  }
+  .slip-panel{
+    min-height: 100%;
+  }
+  .slip-panel > div{
+    width: 15%;
+  }
+  .slip-panel > div + div{
+    width: 85%;
+    height: 100%;
+  }
+  .soundslip-topline{
+    min-width: 92%;
+  }
+  .soundslip-delete{
+    margin-right: 2em;
+  }
+  .user-slip-details{
+    display: block;
+    height: 100%;
+  }
+  .user-slip-last-line{
+    font-size: 0.8em;
+    height: 5em;
+  }
+  .user-slip-tag-group{
+    margin-top: 1em;
+    height: 1.5em;
+    margin-right: 1.4em;
+  }
+}

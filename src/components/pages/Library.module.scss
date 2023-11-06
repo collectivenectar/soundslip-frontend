@@ -1,0 +1,15 @@
+.library {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  font-family: 'Silkscreen', cursive;
+}
+.loadingSampleCell {
+  /* this is for UI being shown as a cell with a 'loading' msg during a loading state */
+}
+.libSlipContainer {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+}

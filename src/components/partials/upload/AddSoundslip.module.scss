@@ -1,0 +1,90 @@
+.uploadContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
+  width: 100%;
+  font-family: 'Silkscreen', cursive;
+  color: #c6c5b6;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.createNew {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+.createNew > label {
+  text-align: center;
+  margin: 1.4em 0;
+}
+.fileUpload {
+  height: 6vh;
+  width: 30%;
+  margin: auto;
+  padding: 1% 0;
+  /* SEE THE BOOKMARKED THING ON STYLING FILE INPUTS */
+}
+.fileUploadText {
+  text-align: center;
+}
+.uploadText {
+  background-color: #c6c5b6;
+  border: solid #c6c5b6 3px;
+  border-radius: 5px;
+  margin: 0 auto;
+  width: 75%;
+  height: 2em;
+  font-family: 'Silkscreen', sans-serif;
+  font-size: 1.2em;
+  padding-left: 1em;
+  color: #5b5a4f;
+}
+.uploadText:hover {
+  border: solid white 3px;
+}
+.uploadText:only-of-type {
+  height: 5em;
+  padding: 0.8em;
+}
+.uploadCheckbox {
+  margin: 1vh 0 4vh 0;
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  /* needs custom styling also */
+}
+.uploadButton {
+  margin: auto;
+  height: 2em;
+  width: 30%;
+  background-color: #9d9b86;
+  border-radius: 5px;
+  margin-bottom: 5em;
+  font-family: 'Silkscreen', sans-serif;
+  font-size: 1.5em;
+  color: #c6c5b6;
+}
+.publicLabel {
+  margin-top: 2em;
+  text-align: center;
+}
+.publicLabel input {
+  display: block;
+  margin: 1em auto;
+  -ms-transform: scale(2);
+  -moz-transform: scale(2);
+  -webkit-transform: scale(2);
+  -o-transform: scale(2);
+  transform: scale(2);
+}
+.uploadTagsGrid {
+  display: flex;
+  flex-direction: row;
+  width: 99%;
+  height: 8em;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}

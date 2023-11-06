@@ -1,0 +1,28 @@
+.mobileFixedContainer {
+  position: fixed;
+  left: 0;
+}
+.mobileMenuContainer > i {
+  font-size: 2em;
+  padding: 0.1em;
+  height: 100%;
+}
+.mobileMenuContainer.opened > i {
+  color: #c6c5b6;
+}
+.mobileMenu {
+  margin: 0 0 0 -1em;
+  width: 100vw;
+  height: 18vh;
+  background-color: #30343f;
+  padding: 1.5em;
+  border-radius: 0 0 9px 0;
+  list-style-type: none;
+  font-size: 1.4em;
+  line-height: 2em;
+  font-family: 'Silkscreen', cursive;
+  border: solid #c6c5b6 1px;
+}
+.mobileMenu:active {
+  background-color: #5d5c52;
+}

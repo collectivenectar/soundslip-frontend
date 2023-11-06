@@ -1,24 +1,23 @@
-import React from 'react'
+import React from 'react';
 
-import AddSoundslip from '../partials/upload/AddSoundslip'
+import AddSoundslip from '../partials/upload/AddSoundslip';
 
-import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react'
-
+import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
+import styles from './Upload.module.scss';
 const Upload = () => {
-  
-  return(
-    <div className="upload">
+  return (
+    <div className={styles.upload}>
       <SignedIn>
-        <div className="upload-container">
+        <div className={styles.uploadContainer}>
           <h2>Upload a new sample</h2>
-          < AddSoundslip />
+          <AddSoundslip />
         </div>
       </SignedIn>
       <SignedOut>
         <RedirectToSignIn />
       </SignedOut>
     </div>
-  )
-}
+  );
+};
 
-export default Upload
+export default Upload;

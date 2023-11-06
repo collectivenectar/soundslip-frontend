@@ -1,0 +1,47 @@
+.editContainer {
+  background-color: #383c4d;
+  border: solid 2px #a6957e;
+  border-radius: 5px;
+}
+.editForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 0.6em;
+}
+.editForm > * {
+  padding: 0.5em 0;
+  width: 90%;
+}
+.editForm > label > input,
+textarea {
+  display: block;
+  margin: 0.6em 0;
+  width: 97%;
+  height: 5vh;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  border: solid #cbbfae 2px;
+  background-color: #191a1f;
+  color: #cbbfae;
+  font-family: 'Silkscreen', cursive;
+}
+.editForm > label > textarea {
+  height: 5em;
+  font-size: 1.1em;
+}
+.editForm > label > input:not(.edit-public) {
+  font-size: 1.1em;
+}
+.editSubmit {
+  color: #5b5a4f;
+  background-color: #cbbfae;
+  height: 5vh;
+  width: 30%;
+  border-radius: 5px;
+  margin: 3em 0;
+  font-family: 'Silkscreen', cursive;
+}
+.isEditing {
+  background-color: #cbbfae;
+}

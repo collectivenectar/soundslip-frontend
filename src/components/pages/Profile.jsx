@@ -1,23 +1,21 @@
-import React from 'react'
+import React from 'react';
 
-import ManageSoundslips from '../partials/profile/ManageSoundslips'
+import ManageSoundslips from '../partials/profile/ManageSoundslips';
 
-import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react'
+import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
+import styles from './Profile.module.scss';
 
 const Home = () => {
-  
   return (
-    <div className="home">
+    <div className={styles.home}>
       <SignedIn>
         <ManageSoundslips />
       </SignedIn>
       <SignedOut>
-        <RedirectToSignIn/>
+        <RedirectToSignIn />
       </SignedOut>
     </div>
-  )
-}
+  );
+};
 
-
-export default Home
-
+export default Home;

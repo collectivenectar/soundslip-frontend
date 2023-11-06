@@ -1,43 +1,51 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react';
 
-import { AudioContext } from '../../../App'
+import { AudioContext } from '../../../App';
+import styles from './Player.module.scss';
+const Player = (props) => {
+  const {
+    currentSoundPlaying,
+    setCurrentSoundPlaying,
+    isPlaying,
+    setIsPlaying,
+  } = useContext(AudioContext);
 
-const Player = ( props ) => {
-    const {
-        currentSoundPlaying, 
-        setCurrentSoundPlaying, 
-        isPlaying, 
-        setIsPlaying 
-    } = useContext(AudioContext)
+  const [isThisOnePlaying, setIsThisOnePlaying] = useState(false);
 
-    const [ isThisOnePlaying, setIsThisOnePlaying ] = useState(false)
-    
-    function togglePlay() {
-        let soundslipId = props.soundslip._id
-        if(!isThisOnePlaying && currentSoundPlaying !== soundslipId){
-            setIsPlaying(oldState => false)
-            setCurrentSoundPlaying(oldSound => soundslipId)
-        }else if(!isThisOnePlaying && currentSoundPlaying === soundslipId){
-            setIsPlaying(playState => true)
-        }else{
-            setIsPlaying(playState => false)
-        }
-        
+  function togglePlay() {
+    let soundslipId = props.soundslip._id;
+    if (!isThisOnePlaying && currentSoundPlaying !== soundslipId) {
+      setIsPlaying((oldState) => false);
+      setCurrentSoundPlaying((oldSound) => soundslipId);
+    } else if (!isThisOnePlaying && currentSoundPlaying === soundslipId) {
+      setIsPlaying((playState) => true);
+    } else {
+      setIsPlaying((playState) => false);
     }
+  }
 
-    useEffect(() => {
-        if(currentSoundPlaying === props.soundslip._id){
-            setIsThisOnePlaying(playState => isPlaying)
-        }else{
-            setIsThisOnePlaying(playState => false)
-        }
-    }, [ isPlaying, currentSoundPlaying ])
+  useEffect(() => {
+    if (currentSoundPlaying === props.soundslip._id) {
+      setIsThisOnePlaying((playState) => isPlaying);
+    } else {
+      setIsThisOnePlaying((playState) => false);
+    }
+  }, [isPlaying, currentSoundPlaying]);
 
-    return (
-        <div className="lib-player-container">
-            <span className="audio-player-lib" onClick={ togglePlay }>{ isThisOnePlaying? <i className="fa-solid fa-pause"></i>: <i className="fa-solid fa-play"></i> }</span>
-        </div>
-    )
-}
+  return (
+    <div className={styles.libPlayerContainer}>
+      <span
+        className={styles.audioPlayerLib}
+        onClick={togglePlay}
+      >
+        {isThisOnePlaying ? (
+          <i className='fa-solid fa-pause'></i>
+        ) : (
+          <i className='fa-solid fa-play'></i>
+        )}
+      </span>
+    </div>
+  );
+};
 
-export default Player
+export default Player;

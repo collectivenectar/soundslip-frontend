@@ -1,0 +1,15 @@
+.upload {
+  min-height: 90vh;
+  width: 100%;
+}
+.uploadContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
+  width: 100%;
+  font-family: 'Silkscreen', cursive;
+  color: #c6c5b6;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

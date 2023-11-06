@@ -1,83 +1,101 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef } from 'react';
 
-import Player from '../../partials/library/Player'
-import { EditContext } from '../../pages/Library'
+import Player from '../../partials/library/Player';
+import { EditContext } from '../../pages/Library';
 
-import axios from 'axios'
-import { toast } from 'react-toastify'
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import styles from './Results.module.scss';
 
-const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
+const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + '/soundslips/';
 
 const Results = ({ soundslip }) => {
+  const toastTemplate = (msg) => toast(msg);
 
-  const toastTemplate = (msg) => toast(msg)
+  const { userId } = useContext(EditContext);
+  const download = useRef(null);
 
-  const { userId } = useContext(EditContext)
-  const download = useRef(null)
-
-  const parsedDate = ("created " + soundslip.createdAt.split("T")[0] + " at " 
-    + soundslip.createdAt.split("T")[1].split(".")[0])
+  const parsedDate =
+    'created ' +
+    soundslip.createdAt.split('T')[0] +
+    ' at ' +
+    soundslip.createdAt.split('T')[1].split('.')[0];
   const tagIcons = {
-      "drums": "fa-solid fa-drum",
-      "synth": "fa-solid fa-wave-square",
-      "bass": "fa-solid fa-house-crack",
-      "lead": "fa-solid fa-music",
-      "voice": "fa-solid fa-microphone-lines",
-      "loop": "fa-solid fa-record-vinyl",
-      "other": "fa-solid fa-blender"
-  }
+    drums: 'fa-solid fa-drum',
+    synth: 'fa-solid fa-wave-square',
+    bass: 'fa-solid fa-house-crack',
+    lead: 'fa-solid fa-music',
+    voice: 'fa-solid fa-microphone-lines',
+    loop: 'fa-solid fa-record-vinyl',
+    other: 'fa-solid fa-blender',
+  };
 
-  function goToUsersPage(){
-    console.log("redirecting to page at username")
-    let userName = soundslip.userName
-    let url = baseUrl + "/user/" + userName
+  function goToUsersPage() {
+    console.log('redirecting to page at username');
+    let userName = soundslip.userName;
+    let url = baseUrl + '/user/' + userName;
   }
 
   function downloadSound() {
-    let soundslipId = soundslip._id
-    let fullUrl = baseUrl + "download/" + soundslipId
+    let soundslipId = soundslip._id;
+    let fullUrl = baseUrl + 'download/' + soundslipId;
     axios({
       method: 'get',
       url: fullUrl,
-      data: {userId: userId},
+      data: { userId: userId },
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-      }
+      },
     })
-      .then(response => {
-        download.current.href = response.data
-        download.current.click()
+      .then((response) => {
+        download.current.href = response.data;
+        download.current.click();
       })
-      .catch(err => {
-        toastTemplate("there seems to be something wrong with the audio file or fileURL")
-      })
+      .catch((err) => {
+        toastTemplate(
+          'there seems to be something wrong with the audio file or fileURL'
+        );
+      });
   }
 
   return (
-    <div className="lib-slip-cell">
-      <div className="lib-slip-links-cont">
-        < Player 
-            soundslip={ soundslip }
-          />
-        <a className="lib-download" onClick={() => downloadSound()}><i className="fa-solid fa-floppy-disk"></i></a>
+    <div className={styles.libSlipCell}>
+      <div className={styles.libSlipLinksCont}>
+        <Player soundslip={soundslip} />
+        <a
+          className={styles.libDownload}
+          onClick={() => downloadSound()}
+        >
+          <i className='fa-solid fa-floppy-disk'></i>
+        </a>
       </div>
-      <div className="lib-slip-cell-data">
-        <div className="lib-slip-group">
-          <h2 className="lib-slip-title">{ soundslip && soundslip.title }</h2>
-          <h2 className="lib-slip-belongs">uploaded by <a className="username-link" onClick={ goToUsersPage }>{ soundslip && soundslip.userName }</a></h2>
-          <h3 className="lib-slip-desc">{ soundslip && soundslip.body }</h3>
-          <div className="lib-slip-last-line">
-            <h3 className="lib-slip-date">{ soundslip && parsedDate }</h3>
-            <div className="lib-slip-tags">
-              <i className={ tagIcons[soundslip.tag] }></i>
-              <h4>{ soundslip.tag }</h4>
+      <div className={styles.libSlipCellData}>
+        <div className={styles.libSlipGroup}>
+          <h2 className={styles.libSlipTitle}>
+            {soundslip && soundslip.title}
+          </h2>
+          <h2 className={styles.libSlipBelongs}>
+            uploaded by{' '}
+            <a
+              className={styles.usernameLink}
+              onClick={goToUsersPage}
+            >
+              {soundslip && soundslip.userName}
+            </a>
+          </h2>
+          <h3 className={styles.libSlipDesc}>{soundslip && soundslip.body}</h3>
+          <div className={styles.libSlipLastLine}>
+            <h3 className={styles.libSlipDate}>{soundslip && parsedDate}</h3>
+            <div className={styles.libSlipTags}>
+              <i className={tagIcons[soundslip.tag]}></i>
+              <h4>{soundslip.tag}</h4>
             </div>
           </div>
-          <a ref={ download }></a>
+          <a ref={download}></a>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Results
+export default Results;

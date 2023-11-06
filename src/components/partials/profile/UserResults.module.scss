@@ -1,0 +1,130 @@
+.soundslipContainerUser {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  line-height: 0.8em;
+  border-bottom: solid #44433c 1px;
+  margin-bottom: 0.3em;
+}
+.soundslipContainerUser:hover {
+  background-color: #3e4048;
+}
+.allUserSoundslips > section {
+  width: 45vw;
+}
+.slipPanel {
+  display: flex;
+  flex-direction: row;
+}
+.slipPanel > div + div {
+  width: 90%;
+}
+.soundslipTopline {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  line-height: 1em;
+}
+.soundslipTopline > .soundslipTitle {
+  font-size: 1.3em;
+}
+.userSlipDetails {
+  margin-left: 1em;
+}
+.userSlipDetails > .soundslipDesc {
+  margin-top: 0;
+  padding: 0 0.4em;
+  font-size: 1em;
+  line-height: 1em;
+  color: #7b7966;
+}
+.userSlipLastLine {
+  display: flex;
+  flex-direction: row;
+  min-height: 2.5em;
+  line-height: 1em;
+  width: 100%;
+  justify-content: space-between;
+}
+.userSlipTagGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 1.5em;
+  margin: 0 0.4em;
+  padding: 0.5em;
+  border-radius: 5px;
+  width: 6em;
+  border: solid #aaa88e 2px;
+}
+.userSlipTagGroup > i {
+  font-size: 1.3em;
+}
+.userSlipTagGroup > h4 {
+  height: 0.9em;
+  margin: 0.2em;
+}
+.userSlipDetails > .soundslipDate {
+  font-size: 0.8em;
+}
+.soundslipTopline i {
+  font-size: 1.6rem;
+}
+.soundslipActions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 8%;
+}
+.soundslipActions > * {
+  padding: 0.9rem 0.5em;
+  margin: 0;
+  display: block;
+}
+.userPlayerSection {
+  width: 10%;
+}
+.userPlayerSection > a {
+  display: none;
+}
+.userPlayerSection > a.userDownload {
+  display: block;
+  width: 100%;
+  height: 50%;
+}
+.userPlayerSection > a.userDownload > i {
+  font-size: 2em;
+  margin: 0.4em 0.5em;
+  color: #37436e;
+}
+.userPlayerSection > a.userDownload > i:hover {
+  color: #cbbfae;
+}
+.fa-pause{
+  font-size: 2rem;
+}
+.fa-play{
+  font-size: 2rem;
+}
+.delete-dialog-cont{
+  background-color: #5b5a4f;
+  line-height: 1em;
+  font-size: 0.7em;
+  color: white;
+  text-align: center;
+  padding: 0.8em 0;
+}
+.delete-dialog-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.delete-dialog-button{
+  border: none;
+  font-family: 'Silkscreen', cursive;
+  color: white;
+  padding: 0.5em 2em;
+  border-radius: 5px;
+  background-color: #cbbfae;
+}
