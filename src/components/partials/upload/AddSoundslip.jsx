@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { ToastContainer, toast } from 'react-toastify'
 import axios from 'axios'
-import { isLoaded, isSignedIn, useUser } from '@clerk/clerk-react'
+import { useUser } from '@clerk/clerk-react'
 
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL
 

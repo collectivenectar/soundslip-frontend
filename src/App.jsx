@@ -22,7 +22,6 @@ const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL + "/soundslips/"
 export const AudioContext = createContext(null)
 
 function App() {
-  console.log(frontendApi)
   const location = useLocation()
   const navigate = useNavigate()
   const locationRef = useRef(location)
@@ -139,7 +138,7 @@ function App() {
     
   return (
     <ClerkProvider
-      frontendApi={frontendApi}
+      publishableKey={frontendApi}
       navigate={(to) => navigate(to)}
       appearance={{
         baseTheme: dark

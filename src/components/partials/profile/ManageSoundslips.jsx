@@ -2,7 +2,7 @@ import React, { useState, useEffect, createContext } from 'react'
 
 import UserResults from './UserResults'
 
-import { isLoaded, isSignedIn, useUser } from '@clerk/clerk-react'
+import { useUser } from '@clerk/clerk-react'
 import axios from 'axios'
 
 const baseUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL
