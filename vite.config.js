@@ -6,10 +6,10 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:3000",
+        target: " https://soundslip-a66fa1f1d10f.herokuapp.com/",
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => "http://localhost:3000"
+        rewrite: (path) => " https://soundslip-a66fa1f1d10f.herokuapp.com/"
       }
     }
   },
